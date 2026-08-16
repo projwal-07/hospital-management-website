@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Evergreen Community Hospital provides practical, compassionate healthcare for families in Western Sydney.">
+    <title>Evergreen Community Hospital - Hospital Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- Accessibility shortcut for keyboard users to bypass repeated navigation links. -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Top contact strip highlights urgent hospital information before the main header. -->
+    <aside class="utility-bar" aria-label="Hospital contact information">
+        <section class="container">
+            <span>Emergency Department: Open 24 hours</span>
+            <span>Phone: <a href="tel:+61291234567">(02) 9123 4567</a></span>
+        </section>
+    </aside>
+
+    <!-- Shared site header with branding, mobile menu button and primary navigation. -->
+    <header class="site-header">
+        <section class="container header-row">
+            <a class="brand" href="index.html" aria-label="Evergreen Community Hospital home page">
+                <span class="brand-mark" aria-hidden="true">+</span>
+                <span>Evergreen Community Hospital
+                    <small>Hospital Management System</small>
+                </span>
+            </a>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button>
+            <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" aria-current="page">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Patient Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero section introduces the hospital and gives visitors the two main actions. -->
+        <section class="hero">
+            <section class="container hero-content">
+                <p class="kicker">Local care for local families</p>
+                <h1>Healthcare that listens.</h1>
+                <p>Evergreen Community Hospital provides reliable emergency, specialist and everyday medical care in one welcoming location. Our purpose is to help every patient feel informed, respected and supported.</p>
+                <section class="button-row" aria-label="Main actions">
+                    <a class="button button-primary" href="contact.html">Request an appointment</a>
+                    <a class="button button-light" href="services.html">View our services</a>
+                </section>
+            </section>
+        </section>
+
+        <!-- Quick information cards answer common patient questions at a glance. -->
+        <section class="quick-help" aria-label="Quick hospital information">
+            <section class="container quick-help-grid">
+                <article><h2>Emergency</h2><p>Open every day, 24 hours</p></article>
+                <article><h2>Appointments</h2><p>Monday-Friday, 8 am-6 pm</p></article>
+                <article><h2>Location</h2><p>42 Park Road, Parramatta</p></article>
+                <article><h2>Parking</h2><p>Visitor parking via Oak Street</p></article>
+            </section>
+        </section>
+
+        <!-- Service summary cards link the homepage message to the full services page. -->
+        <section class="content-section">
+            <section class="container">
+                <header class="section-heading">
+                    <p class="kicker">How we can help</p>
+                    <h2>Care through every stage of life</h2>
+                    <p>Our clinical departments communicate with each other, helping patients move from diagnosis to treatment and recovery with less confusion.</p>
+                </header>
+                <section class="card-grid">
+                    <article class="info-card"><span class="text-icon" aria-hidden="true">01</span><h3>Urgent care</h3><p>Fast assessment for serious illness, injury and unexpected health concerns.</p></article>
+                    <article class="info-card"><span class="text-icon" aria-hidden="true">02</span><h3>Specialist clinics</h3><p>Consultations in cardiology, paediatrics, orthopaedics and general medicine.</p></article>
+                    <article class="info-card"><span class="text-icon" aria-hidden="true">03</span><h3>Recovery support</h3><p>Physiotherapy, follow-up appointments and practical discharge planning.</p></article>
+                </section>
+            </section>
+        </section>
+
+        <!-- Image and text section reinforces the hospital's patient-centred approach. -->
+        <section class="content-section alternate">
+            <section class="container two-column">
+                <figure class="photo-frame">
+                    <img src="images/doctor-patient.jpg" width="1125" height="750" alt="Doctors discussing treatment with a patient in a hospital room">
+                </figure>
+                <article>
+                    <p class="kicker">A respectful approach</p>
+                    <h2>Patients are part of every decision</h2>
+                    <p>Good healthcare is not only about treatment. We take time to explain options, answer questions and involve patients and families in decisions wherever possible.</p>
+                    <a href="about.html">Learn about our hospital</a>
+                </article>
+            </section>
+        </section>
+    </main>
+
+    <!-- Shared footer repeats key links and fictional prototype contact details. -->
+    <footer class="site-footer">
+        <section class="container footer-grid">
+            <section><h2>Evergreen Community Hospital</h2><p>Practical, respectful healthcare for Western Sydney families.</p></section>
+            <nav aria-label="Footer navigation"><h3>Quick links</h3><ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="gallery.html">Facilities</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+            <section><h3>Contact</h3><address>42 Park Road, Parramatta NSW 2150<br><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></address><ul class="footer-social"><li><a href="https://www.facebook.com/" aria-label="Facebook">f</a></li><li><a href="https://www.instagram.com/" aria-label="Instagram">ig</a></li><li><a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a></li></ul></section>
+        </section>
+        <p class="copyright">Copyright &copy; <span id="current-year">2026</span> Evergreen Community Hospital.</p>
+    </footer>
+</body>
+</html>

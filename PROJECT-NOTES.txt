@@ -1,0 +1,36 @@
+EVERGREEN COMMUNITY HOSPITAL - ICT726 WEBSITE NOTES
+
+SITE STRUCTURE
+- index.html: creative homepage, business title, 42-word introduction, calls to action and quick information.
+- about.html: mission, vision, history and organisational values.
+- services.html: nine hospital departments and emergency guidance.
+- testimonials.html: static prototype with clearly identified fictional patient stories.
+- gallery.html: five photographs and an interactive JavaScript lightbox.
+- contact.html: contact details, social links and a validated appointment request form.
+
+TECHNICAL FEATURES
+- HTML5 semantic structure including header, nav, main, section, article, aside and footer.
+- One shared external stylesheet and one shared JavaScript file.
+- Mobile-first media queries for phone, tablet and desktop layouts.
+- CSS3 transitions, transforms, rounded corners, opacity, shadows and a gradient image overlay.
+- HTML5 and JavaScript form validation with success and error feedback.
+- Keyboard-accessible gallery; Escape closes the viewer and focus returns to the selected thumbnail.
+- Alt text on all images, ARIA labels, visible keyboard focus and reduced-motion support.
+- No framework, template, PHP, ASP, jQuery or server-side scripting.
+
+PRIVACY AND ETHICS
+- The form is a demonstration and does not transmit or store data.
+- Hospital details, patient stories and contact information are fictional.
+- All photographs are free-to-use stock media. Full links are recorded in images/IMAGE-SOURCES.txt.
+- No AI-generated image is included.
+
+AI USE DECLARATION STARTING POINT
+AI assistance was used to suggest an initial website structure and some HTML, CSS and JavaScript. I reviewed and customized the page organization, hospital content, colour palette, navigation, responsive layout, accessibility labels and validation messages. I also selected and documented the final free-to-use photographs. Before submission, this paragraph should be rewritten in the student's own words and supported with genuine screenshots showing the student's changes.
+
+IMPORTANT FINAL SUBMISSION TASKS FOR THE STUDENT
+1. Personalize the hospital name/content and make your own visible changes.
+2. Create wireframes and retain screenshots showing progress.
+3. Prepare the required development report with AI declaration, customization comparisons, accessibility, ethics, privacy, reflection and screenshots.
+4. Upload media to the required Google Drive folder and add the shared link to the report.
+5. Host the website on GitHub Pages or Netlify and submit its URL.
+6. Zip all code files together with the final report for Moodle.

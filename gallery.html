@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Photo gallery showing hospital facilities, staff and equipment.">
+    <title>Gallery - Evergreen Community Hospital</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <!-- Accessibility shortcut for keyboard users to bypass repeated navigation links. -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <!-- Top contact strip highlights urgent hospital information before the main header. -->
+    <aside class="utility-bar" aria-label="Hospital contact information"><section class="container"><span>Emergency Department: Open 24 hours</span><span>Phone: <a href="tel:+61291234567">(02) 9123 4567</a></span></section></aside>
+    <!-- Shared site header with branding, mobile menu button and primary navigation. -->
+    <header class="site-header"><section class="container header-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">+</span><span>Evergreen Community Hospital<small>Hospital Management System</small></span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button><nav class="main-nav" id="main-navigation" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="testimonials.html">Patient Stories</a></li><li><a href="gallery.html" aria-current="page">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></nav></section></header>
+
+    <main id="main-content">
+        <!-- Page banner explains how visitors can use the interactive gallery. -->
+        <header class="page-banner"><section class="container"><p class="kicker">Hospital media</p><h1>Inside our healthcare environment</h1><p>Select a photograph to view a larger version. Original sources are documented in the images folder.</p></section></header>
+        <!-- Gallery buttons open the lightbox while preserving image alt text and captions. -->
+        <section class="content-section"><section class="container gallery-grid">
+            <button class="gallery-button" type="button" data-caption="A modern hospital building and main entrance."><img src="images/hospital-exterior.jpg" width="1600" height="591" alt="Exterior of a modern hospital building"><span>Hospital exterior</span></button>
+            <button class="gallery-button" type="button" data-caption="Doctors and a nurse discussing treatment with a patient."><img src="images/doctor-patient.jpg" width="1125" height="750" alt="Healthcare staff talking with a patient in a hospital room"><span>Patient consultation</span></button>
+            <button class="gallery-button" type="button" data-caption="A clean hospital ward prepared for patient care."><img src="images/hospital-ward.jpg" width="1359" height="900" alt="Hospital ward with beds and medical equipment"><span>Hospital ward</span></button>
+            <button class="gallery-button" type="button" data-caption="A diverse group of healthcare professionals."><img src="images/medical-team.jpg" width="1350" height="900" alt="Doctors and nurses standing together in a hospital"><span>Healthcare team</span></button>
+            <button class="gallery-button" type="button" data-caption="Medical professionals working in a surgical environment."><img src="images/surgery-team.jpg" width="600" height="900" alt="Surgical staff carrying out a medical procedure"><span>Surgical care</span></button>
+        </section></section>
+
+        <!-- Accessible lightbox dialog is controlled by JavaScript and hidden until selected. -->
+        <aside class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Large photograph viewer" aria-hidden="true">
+            <button class="lightbox-close" type="button" aria-label="Close photograph viewer">&times;</button>
+            <figure><img src="images/hospital-exterior.jpg" alt="Large gallery photograph"><figcaption></figcaption></figure>
+        </aside>
+    </main>
+
+    <!-- Shared footer repeats key links and fictional prototype contact details. -->
+    <footer class="site-footer"><section class="container footer-grid"><section><h2>Evergreen Community Hospital</h2><p>Practical, respectful healthcare for Western Sydney families.</p></section><nav aria-label="Footer navigation"><h3>Quick links</h3><ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="gallery.html">Facilities</a></li><li><a href="contact.html">Contact</a></li></ul></nav><section><h3>Contact</h3><address>42 Park Road, Parramatta NSW 2150<br><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></address><ul class="footer-social"><li><a href="https://www.facebook.com/" aria-label="Facebook">f</a></li><li><a href="https://www.instagram.com/" aria-label="Instagram">ig</a></li><li><a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a></li></ul></section></section><p class="copyright">Copyright &copy; <span id="current-year">2026</span> Evergreen Community Hospital.</p></footer>
+</body>
+</html>
