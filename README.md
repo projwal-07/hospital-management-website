@@ -29,8 +29,14 @@ All authorisation is enforced server-side, not only by hiding navigation links.
 1. Install XAMPP and start **Apache** and **MySQL** from the XAMPP Control Panel.
 2. Place this project folder at `c:\xampp\htdocs\hms`.
 3. Open `http://localhost/hms/` in a browser.
-4. Database import instructions will be added in a later phase — no database is
-   required to run the site yet.
+4. Import the database: see `database/README.md` (import `database/schema.sql`
+   then `database/seed.sql` in phpMyAdmin as `root`).
+5. Create the local database config: copy `config/db.example.php` to
+   `config/db.php` and enter your `hms_app` password. See `config/README.md`.
+   `config/db.php` is git-ignored.
+
+The existing static pages still work without steps 4-5; those steps are
+required for the dynamic (PHP/MySQL) features being added in Assignment 4.
 
 ## Project structure
 
@@ -50,6 +56,10 @@ All authorisation is enforced server-side, not only by hiding navigation links.
 
 - **Phase 0 (complete):** development branch, folder structure, `.gitignore`,
   Apache folder protection, and this documentation.
-- **Next:** Phase 1 — MySQL database schema (not yet started).
+- **Phase 1 (complete):** MySQL schema (`users`, `departments`, `doctors`,
+  `appointments`), seed data and ER diagram — see `database/`.
+- **Phase 2 (complete):** secure PDO connection layer — `config/db.example.php`,
+  local git-ignored `config/db.php`, and `db()` in `includes/database.php`.
+- **Next:** Phase 3 — user authentication (not yet started).
 
 The Assignment 3 static website remains fully functional and visually unchanged.
