@@ -1,0 +1,64 @@
+%% Evergreen Community Hospital - HMS
+%% ICT726 Assignment 4 - entity-relationship diagram (source)
+%%
+%% Render to an image with any Mermaid tool, e.g.:
+%%   - https://mermaid.live  (paste this file, export PNG/SVG)
+%%   - VS Code "Markdown Preview Mermaid Support" / "Mermaid Editor"
+%%   - mermaid-cli:  mmdc -i ER-diagram.mmd -o ER-diagram.png
+%%
+%% Relationships:
+%%   departments 1 --- M doctors        (a department has many doctors)
+%%   users       1 --- 1 doctors        (a doctor account has one profile)
+%%   users       1 --- M appointments   (a patient books many appointments)
+%%   doctors     1 --- M appointments   (a doctor is assigned many appointments)
+%%   departments 1 --- M appointments   (a department categorises many appointments)
+
+erDiagram
+    USERS ||--o| DOCTORS : "has profile (doctors only)"
+    DEPARTMENTS ||--o{ DOCTORS : "employs"
+    USERS ||--o{ APPOINTMENTS : "books as patient"
+    DOCTORS ||--o{ APPOINTMENTS : "is assigned"
+    DEPARTMENTS ||--o{ APPOINTMENTS : "categorises"
+
+    USERS {
+        int id PK
+        varchar full_name
+        varchar email UK
+        varchar password_hash
+        enum role "admin|doctor|patient"
+        varchar phone "nullable"
+        datetime created_at
+        datetime updated_at
+    }
+
+    DEPARTMENTS {
+        int id PK
+        varchar name UK
+        varchar description "nullable"
+        datetime created_at
+    }
+
+    DOCTORS {
+        int id PK
+        int user_id FK,UK
+        int department_id FK
+        varchar specialisation
+        varchar bio "nullable"
+        tinyint is_active "1=active, 0=inactive"
+        datetime created_at
+        datetime updated_at
+    }
+
+    APPOINTMENTS {
+        int id PK
+        int patient_id FK "users.id (role=patient)"
+        int doctor_id FK
+        int department_id FK
+        date appointment_date
+        time appointment_time
+        varchar reason
+        enum status "pending|confirmed|completed|cancelled"
+        varchar notes "nullable"
+        datetime created_at
+        datetime updated_at
+    }
