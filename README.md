@@ -66,7 +66,12 @@ required for the dynamic (PHP/MySQL) features being added in Assignment 4.
   `includes/csrf.php`, `includes/validation.php`; shared page partials in
   `includes/header.php`, `includes/nav.php`, `includes/footer.php`; pages in
   `auth/` and role dashboard stubs in `dashboard/`.
-- **Next:** Phase 4 — full role-based dashboards (not yet started).
+- **Phase 4 (complete):** read-only role dashboards — patient, doctor and admin
+  views with status counts, upcoming appointments and recent activity. Queries
+  in `includes/dashboard.php`; styling in `css/dashboard.css` (added to, not
+  replacing, `css/style.css`).
+- **Next:** Phase 5 — appointment booking and doctor/department management
+  (CRUD; not yet started).
 
 ### Known remaining security-hardening items
 

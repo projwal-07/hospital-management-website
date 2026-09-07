@@ -12,6 +12,7 @@ Direct browser access to this folder is blocked by `.htaccess`.
 | `csrf.php` | `csrf_token()`, `csrf_field()`, `csrf_regenerate()`, `csrf_verify()`. One random token per session, compared with `hash_equals()`. |
 | `validation.php` | `v_required`, `v_length`, `v_email`, `v_match`, `v_password`, `v_phone_optional` - server-side field checks that fill an `$errors` array. |
 | `auth.php` | Session bootstrap and authorisation: `auth_boot()`, `current_user()`, `is_logged_in()`, `login_user()`, `logout_user()`, `require_login()`, `require_role()`, `require_guest()`, `dashboard_url_for()`, `redirect()`, `safe_return_to()`, `flash_set()/flash_get()`, `e()`. |
+| `dashboard.php` (Phase 4) | Read-only dashboard queries as named functions (`patient_*`, `doctor_*`, `admin_*`) plus formatting helpers (`fmt_date`, `fmt_time`, `fmt_datetime`, `status_label`, `status_class`). All use `db()` with bound integer ids/limits; no writes. |
 
 `auth.php` pulls in `database.php`, `csrf.php` and `validation.php`, so a
 page only needs:
@@ -25,7 +26,7 @@ auth_boot();
 
 | File | Purpose |
 |------|---------|
-| `header.php` | Opens the document, links the existing `css/style.css` and `js/script.js`, renders the site header, and prints any one-time flash message. Expects `$page_title`. |
+| `header.php` | Opens the document, links `css/style.css`, `css/dashboard.css` and `js/script.js`, renders the site header, and prints any one-time flash message. Expects `$page_title`. |
 | `nav.php` | Primary navigation; shows Log in / Register when signed out and Dashboard / Log out when signed in. |
 | `footer.php` | Closes `<main>` and the document. |
 
