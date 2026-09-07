@@ -60,6 +60,16 @@ required for the dynamic (PHP/MySQL) features being added in Assignment 4.
   `appointments`), seed data and ER diagram — see `database/`.
 - **Phase 2 (complete):** secure PDO connection layer — `config/db.example.php`,
   local git-ignored `config/db.php`, and `db()` in `includes/database.php`.
-- **Next:** Phase 3 — user authentication (not yet started).
+- **Phase 3 (complete):** authentication — patient self-registration, login,
+  logout, hardened sessions, CSRF protection, server-side validation, and
+  server-enforced role-based access. Helpers in `includes/auth.php`,
+  `includes/csrf.php`, `includes/validation.php`; shared page partials in
+  `includes/header.php`, `includes/nav.php`, `includes/footer.php`; pages in
+  `auth/` and role dashboard stubs in `dashboard/`.
+- **Next:** Phase 4 — full role-based dashboards (not yet started).
+
+### Known remaining security-hardening items
+
+- Login throttling / rate limiting is deferred to Phase 6.
 
 The Assignment 3 static website remains fully functional and visually unchanged.
