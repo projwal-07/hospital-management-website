@@ -1,0 +1,160 @@
+/* =========================================================
+   Evergreen Community Hospital - HMS
+   Dashboard styles (Phase 4)
+
+   Loaded IN ADDITION TO css/style.css. Everything here is
+   scoped to .dash-* classes so it adds to, and never
+   overrides, the existing site design. Colours reuse the
+   custom properties already declared in style.css.
+   ========================================================= */
+
+.dash {
+    padding: clamp(28px, 6vw, 48px) 0;
+}
+
+.dash-section {
+    margin-bottom: clamp(28px, 6vw, 44px);
+}
+
+.dash-section > h2 {
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border, #ccd9de);
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+}
+
+.dash-section > h3 {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+}
+
+/* ---------- statistics ---------- */
+.dash-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin: 0;
+}
+
+.dash-stat {
+    padding: 16px 18px;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--border, #ccd9de);
+    border-top: 4px solid var(--green, #2f7d68);
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(18, 57, 91, 0.07);
+}
+
+.dash-stat dt {
+    margin: 0 0 6px;
+    color: var(--muted, #5c6b73);
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.dash-stat dd {
+    margin: 0;
+    color: var(--navy, #12395b);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.9rem;
+    line-height: 1.1;
+}
+
+.dash-stat dd small {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    color: var(--muted, #5c6b73);
+}
+
+/* ---------- responsive table ---------- */
+.dash-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border, #ccd9de);
+    border-radius: 5px;
+}
+
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.dash-table caption {
+    padding: 10px 12px;
+    background: var(--pale-blue, #eaf4f7);
+    color: var(--navy, #12395b);
+    font-weight: bold;
+    text-align: left;
+}
+
+.dash-table th,
+.dash-table td {
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid var(--border, #ccd9de);
+    white-space: nowrap;
+}
+
+.dash-table thead th {
+    background: var(--white, #ffffff);
+    color: var(--navy, #12395b);
+    border-top: 0;
+    border-bottom: 2px solid var(--border, #ccd9de);
+}
+
+.dash-table tbody th[scope="row"] {
+    font-weight: bold;
+    color: var(--navy, #12395b);
+}
+
+.dash-table tbody tr:nth-child(even) th[scope="row"],
+.dash-table tbody tr:nth-child(even) td {
+    background: #f6f9fb;
+}
+
+/* ---------- status text (never colour alone) ---------- */
+.dash-status {
+    display: inline-block;
+    padding: 2px 10px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.dash-status--pending   { color: #8a5a00; background: #fff4e0; }
+.dash-status--confirmed { color: #1f5f52; background: #e0f2ec; }
+.dash-status--completed { color: #2f4b7c; background: #e6edf7; }
+.dash-status--cancelled { color: #7c1d1d; background: #fae5e5; }
+
+/* ---------- empty states and notes ---------- */
+.dash-empty {
+    margin: 0;
+    padding: 16px 18px;
+    background: var(--pale-blue, #eaf4f7);
+    border-left: 4px solid var(--blue, #176b87);
+    border-radius: 4px;
+    color: var(--text, #263640);
+}
+
+.dash-note {
+    color: var(--muted, #5c6b73);
+    font-size: 0.9rem;
+}
+
+/* ---------- two-up sub-sections (wide screens only) ---------- */
+.dash-subgrid {
+    display: grid;
+    gap: clamp(20px, 5vw, 32px);
+}
+
+@media (min-width: 860px) {
+    .dash-subgrid--2 {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}

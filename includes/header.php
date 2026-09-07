@@ -23,6 +23,7 @@ $page_title = $page_title ?? 'Hospital Management System';
     <meta name="robots" content="noindex, nofollow">
     <title><?= e($page_title) ?> - Evergreen Community Hospital</title>
     <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/style.css">
+    <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/dashboard.css">
     <script src="<?= e(BASE_URL) ?>/js/script.js" defer></script>
 </head>
 <body>
