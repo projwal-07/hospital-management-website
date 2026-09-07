@@ -88,3 +88,27 @@ function v_phone_optional(array &$errors, string $field, mixed $value, string $l
     }
     return true;
 }
+
+/**
+ * Value must be one of $allowed (strict comparison). Cast both sides to
+ * the same type before calling (e.g. int ids).
+ */
+function v_in_set(array &$errors, string $field, mixed $value, array $allowed, string $label): bool
+{
+    if (!in_array($value, $allowed, true)) {
+        $errors[$field] ??= "Choose a valid $label.";
+        return false;
+    }
+    return true;
+}
+
+/** Optional free-text note: at most $max characters. Empty is allowed. */
+function v_note_optional(array &$errors, string $field, mixed $value, int $max = 500, string $label = 'Note'): bool
+{
+    $s = trim((string) ($value ?? ''));
+    if ($s !== '' && mb_strlen($s) > $max) {
+        $errors[$field] ??= "$label must be $max characters or fewer.";
+        return false;
+    }
+    return true;
+}
