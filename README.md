@@ -70,8 +70,18 @@ required for the dynamic (PHP/MySQL) features being added in Assignment 4.
   views with status counts, upcoming appointments and recent activity. Queries
   in `includes/dashboard.php`; styling in `css/dashboard.css` (added to, not
   replacing, `css/style.css`).
-- **Next:** Phase 5 — appointment booking and doctor/department management
-  (CRUD; not yet started).
+- **Phase 5 (complete):** CRUD and validated forms — patient appointment
+  booking/list/cancel (`patient/`), doctor assigned-appointments and status
+  updates (`doctor/`), admin management of appointments, doctors and
+  departments (`admin/`). Data helpers in `includes/appointments.php`,
+  `includes/doctors.php`, `includes/departments.php`. Booking is Mon–Fri,
+  fixed 30-minute slots 09:00–16:30, tomorrow … +60 days, with a
+  transaction-guarded slot-conflict check (cancelled slots are reusable).
+- **Next:** Phase 6 — validation/error-handling hardening and login rate
+  limiting (not yet started).
+
+The two rubric demonstration forms are **patient appointment booking**
+(`patient/book.php`) and **admin add/edit doctor** (`admin/doctor-form.php`).
 
 ### Known remaining security-hardening items
 
