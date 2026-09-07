@@ -34,6 +34,12 @@ require __DIR__ . '/../includes/header.php';
 
 <div class="container dash">
 
+    <div class="dash-actions">
+        <a class="button button-primary" href="<?= e(BASE_URL) ?>/admin/appointments.php">Manage appointments</a>
+        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Manage doctors</a>
+        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Manage departments</a>
+    </div>
+
     <section class="dash-section" aria-labelledby="people-heading">
         <h2 id="people-heading">People and departments</h2>
         <dl class="dash-stat-grid">

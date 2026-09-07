@@ -40,6 +40,10 @@ require __DIR__ . '/../includes/header.php';
     </section>
 <?php else: ?>
 
+    <div class="dash-actions">
+        <a class="button button-primary" href="<?= e(BASE_URL) ?>/doctor/appointments.php">Manage my appointments</a>
+    </div>
+
     <section class="dash-section" aria-labelledby="ov-heading">
         <h2 id="ov-heading">Overview</h2>
         <dl class="dash-stat-grid">

@@ -30,6 +30,11 @@ require __DIR__ . '/../includes/header.php';
 
 <div class="container dash">
 
+    <div class="dash-actions">
+        <a class="button button-primary" href="<?= e(BASE_URL) ?>/patient/book.php">Book an appointment</a>
+        <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">View all my appointments</a>
+    </div>
+
     <section class="dash-section" aria-labelledby="ov-heading">
         <h2 id="ov-heading">Overview</h2>
         <dl class="dash-stat-grid">

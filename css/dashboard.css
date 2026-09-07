@@ -158,3 +158,66 @@
         align-items: start;
     }
 }
+
+/* ---------- CRUD: action rows, filters, forms, confirmations ---------- */
+.dash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: clamp(20px, 5vw, 32px);
+}
+
+.dash-filter {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 14px;
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    background: var(--pale-blue, #eaf4f7);
+    border: 1px solid var(--border, #ccd9de);
+    border-radius: 5px;
+}
+
+.dash-filter .form-field {
+    margin: 0;
+}
+
+.dash-form {
+    max-width: 640px;
+    margin-top: 4px;
+}
+
+.dash-confirm {
+    margin-bottom: clamp(24px, 6vw, 40px);
+    padding: 18px 20px;
+    background: #fff7e6;
+    border: 1px solid #e6c37a;
+    border-left: 4px solid #b5822f;
+    border-radius: 5px;
+}
+
+.dash-confirm > h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+/* Small inline POST form used for activate/deactivate in a table row. */
+.dash-inline-form {
+    display: inline;
+    margin: 0;
+}
+
+.link-button {
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--blue, #176b87);
+    font: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.link-button:hover {
+    color: var(--navy, #12395b);
+}
