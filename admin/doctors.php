@@ -83,7 +83,7 @@ require __DIR__ . '/../includes/header.php';
                     <?= csrf_field() ?>
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= (int) $confirmDelete['id'] ?>">
-                    <button type="submit" class="button button-primary">Delete doctor</button>
+                    <button type="submit" class="button button-danger">Delete doctor</button>
                     <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Keep doctor</a>
                 </form>
             <?php endif; ?>

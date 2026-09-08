@@ -1,54 +1,87 @@
 /* =========================================================
    Evergreen Community Hospital - HMS
-   Dashboard styles (Phase 4)
+   Application layer styles (dashboards, auth and CRUD pages)
 
-   Loaded IN ADDITION TO css/style.css. Everything here is
-   scoped to .dash-* classes so it adds to, and never
-   overrides, the existing site design. Colours reuse the
-   custom properties already declared in style.css.
+   Loaded IN ADDITION TO, and AFTER, css/style.css, and only
+   on the dynamic PHP pages.
+
+   The shared visual system - palette, tokens, buttons, form
+   controls, feedback messages, page banners, header, footer -
+   now lives in css/style.css so the public website and the
+   application look like one site. This file only adds the
+   pieces that exist only inside the signed-in application:
+   the .dash-* dashboard/CRUD components and a comfortable
+   width for the authentication forms.
    ========================================================= */
 
+/* ---------------------------------------------------------
+   Page rhythm
+   --------------------------------------------------------- */
 .dash {
-    padding: clamp(28px, 6vw, 48px) 0;
+    padding: clamp(24px, 5vw, 40px) 0 clamp(36px, 8vw, 56px);
 }
 
 .dash-section {
-    margin-bottom: clamp(28px, 6vw, 44px);
+    margin-bottom: clamp(26px, 6vw, 40px);
 }
 
 .dash-section > h2 {
-    margin: 0 0 14px;
+    margin: 0 0 16px;
     padding-bottom: 8px;
-    border-bottom: 2px solid var(--border, #ccd9de);
-    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    border-bottom: 2px solid var(--border);
+    color: var(--navy);
+    font-size: clamp(1.3rem, 4vw, 1.65rem);
 }
 
 .dash-section > h3 {
     margin: 0 0 12px;
-    font-size: 1.15rem;
+    color: var(--navy);
+    font-size: 1.12rem;
 }
 
-/* ---------- statistics ---------- */
+/* ---------------------------------------------------------
+   Primary action row (Book / Manage ...)
+   --------------------------------------------------------- */
+.dash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: clamp(22px, 5vw, 30px);
+    padding-bottom: clamp(16px, 4vw, 22px);
+    border-bottom: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------
+   Statistics cards
+   --------------------------------------------------------- */
 .dash-stat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
     gap: 14px;
     margin: 0;
 }
 
 .dash-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
     padding: 16px 18px;
-    background: var(--white, #ffffff);
-    border: 1px solid var(--border, #ccd9de);
-    border-top: 4px solid var(--green, #2f7d68);
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(18, 57, 91, 0.07);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.18s ease;
+}
+
+.dash-stat:hover {
+    box-shadow: var(--shadow-md);
 }
 
 .dash-stat dt {
-    margin: 0 0 6px;
-    color: var(--muted, #5c6b73);
-    font-size: 0.8rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
     font-weight: bold;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -56,23 +89,26 @@
 
 .dash-stat dd {
     margin: 0;
-    color: var(--navy, #12395b);
+    color: var(--navy);
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.9rem;
+    font-size: 1.85rem;
     line-height: 1.1;
 }
 
 .dash-stat dd small {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.95rem;
-    color: var(--muted, #5c6b73);
+    color: var(--muted);
 }
 
-/* ---------- responsive table ---------- */
+/* ---------------------------------------------------------
+   Tables
+   --------------------------------------------------------- */
 .dash-table-wrap {
     overflow-x: auto;
-    border: 1px solid var(--border, #ccd9de);
-    border-radius: 5px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
 }
 
 .dash-table {
@@ -82,71 +118,123 @@
 }
 
 .dash-table caption {
-    padding: 10px 12px;
-    background: var(--pale-blue, #eaf4f7);
-    color: var(--navy, #12395b);
+    padding: 11px 14px;
+    background: var(--pale-blue);
+    border-bottom: 1px solid var(--border);
+    color: var(--navy);
+    font-size: 0.9rem;
     font-weight: bold;
     text-align: left;
 }
 
 .dash-table th,
 .dash-table td {
-    padding: 10px 12px;
+    padding: 12px 14px;
     text-align: left;
     vertical-align: top;
-    border-top: 1px solid var(--border, #ccd9de);
+    border-top: 1px solid var(--line);
     white-space: nowrap;
 }
 
 .dash-table thead th {
-    background: var(--white, #ffffff);
-    color: var(--navy, #12395b);
+    background: #f2f7f9;
     border-top: 0;
-    border-bottom: 2px solid var(--border, #ccd9de);
+    border-bottom: 2px solid var(--border);
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 .dash-table tbody th[scope="row"] {
     font-weight: bold;
-    color: var(--navy, #12395b);
+    color: var(--navy);
 }
 
 .dash-table tbody tr:nth-child(even) th[scope="row"],
 .dash-table tbody tr:nth-child(even) td {
-    background: #f6f9fb;
+    background: #f7fafc;
 }
 
-/* ---------- status text (never colour alone) ---------- */
+.dash-table tbody tr:hover th[scope="row"],
+.dash-table tbody tr:hover td {
+    background: #eaf2f6;
+}
+
+.dash-table a {
+    font-weight: bold;
+}
+
+/* The action column may wrap on narrow screens instead of
+   forcing horizontal scrolling. Data columns stay on one line. */
+.dash-table th:last-child,
+.dash-table td:last-child {
+    white-space: normal;
+}
+
+/* ---------------------------------------------------------
+   Status badges - dot + text; colour only reinforces
+   --------------------------------------------------------- */
 .dash-status {
-    display: inline-block;
-    padding: 2px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 92px;
+    padding: 3px 12px;
     border: 1px solid currentColor;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.78rem;
     font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
-.dash-status--pending   { color: #8a5a00; background: #fff4e0; }
-.dash-status--confirmed { color: #1f5f52; background: #e0f2ec; }
-.dash-status--completed { color: #2f4b7c; background: #e6edf7; }
-.dash-status--cancelled { color: #7c1d1d; background: #fae5e5; }
+.dash-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: currentColor;
+}
 
-/* ---------- empty states and notes ---------- */
+.dash-status--pending   { color: #8a5a00; background: #fdf3e2; }
+.dash-status--confirmed { color: #1f5f52; background: #e2f2ec; }
+.dash-status--completed { color: #2f4b7c; background: #e7edf7; }
+.dash-status--cancelled { color: #7c1d1d; background: #fbe6e6; }
+
+/* ---------------------------------------------------------
+   Empty states and helper notes
+   --------------------------------------------------------- */
 .dash-empty {
     margin: 0;
-    padding: 16px 18px;
-    background: var(--pale-blue, #eaf4f7);
-    border-left: 4px solid var(--blue, #176b87);
-    border-radius: 4px;
-    color: var(--text, #263640);
+    padding: 18px 20px;
+    background: var(--pale-blue);
+    border: 1px solid #cfe3ea;
+    border-left: 4px solid var(--blue);
+    border-radius: var(--radius);
+    color: var(--text);
 }
 
 .dash-note {
-    color: var(--muted, #5c6b73);
+    margin: 0 0 12px;
+    color: var(--muted);
     font-size: 0.9rem;
 }
 
-/* ---------- two-up sub-sections (wide screens only) ---------- */
+/* Helper text sitting directly under a field. */
+.form-field .dash-note,
+.form-field p[id$="-hint"] {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------
+   Two-up sub-sections (wide screens only)
+   --------------------------------------------------------- */
 .dash-subgrid {
     display: grid;
     gap: clamp(20px, 5vw, 32px);
@@ -159,24 +247,19 @@
     }
 }
 
-/* ---------- CRUD: action rows, filters, forms, confirmations ---------- */
-.dash-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: clamp(20px, 5vw, 32px);
-}
-
+/* ---------------------------------------------------------
+   Filters, forms and confirmation panels
+   --------------------------------------------------------- */
 .dash-filter {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 14px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     padding: 14px 16px;
-    background: var(--pale-blue, #eaf4f7);
-    border: 1px solid var(--border, #ccd9de);
-    border-radius: 5px;
+    background: var(--pale-blue);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
 }
 
 .dash-filter .form-field {
@@ -189,20 +272,25 @@
 }
 
 .dash-confirm {
-    margin-bottom: clamp(24px, 6vw, 40px);
+    margin-bottom: clamp(24px, 6vw, 38px);
     padding: 18px 20px;
     background: #fff7e6;
     border: 1px solid #e6c37a;
-    border-left: 4px solid #b5822f;
-    border-radius: 5px;
+    border-left: 4px solid var(--warning);
+    border-radius: var(--radius);
 }
 
 .dash-confirm > h2 {
     margin-top: 0;
-    font-size: 1.3rem;
+    color: var(--navy);
+    font-size: 1.25rem;
 }
 
-/* Small inline POST form used for activate/deactivate in a table row. */
+.dash-confirm form {
+    margin-top: 4px;
+}
+
+/* Small inline POST form (activate/deactivate in a table row). */
 .dash-inline-form {
     display: inline;
     margin: 0;
@@ -212,12 +300,90 @@
     padding: 0;
     background: none;
     border: 0;
-    color: var(--blue, #176b87);
+    color: var(--blue);
     font: inherit;
+    font-weight: bold;
     text-decoration: underline;
     cursor: pointer;
 }
 
 .link-button:hover {
-    color: var(--navy, #12395b);
+    color: var(--navy);
+}
+
+/* Spacing for a submit / secondary pair. */
+.form-panel .button + .button,
+.form-panel .button + a.button,
+.dash-confirm .button + .button,
+.dash-confirm .button + a.button {
+    margin-left: 8px;
+}
+
+/* ---------------------------------------------------------
+   Authentication pages (login / register / logout)
+   .content-section is used only by these pages in the
+   dynamic app. Give the form a deliberate, comfortable width
+   and reduce the surrounding empty space.
+   --------------------------------------------------------- */
+.content-section {
+    padding: clamp(22px, 5vw, 34px) 0 clamp(40px, 8vw, 56px);
+}
+
+.content-section .form-panel,
+.content-section > .container > .form-feedback {
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content-section .form-grid {
+    grid-template-columns: 1fr;
+}
+
+/* "No account yet? ..." / "Already registered? ..." line */
+.content-section .form-panel > p {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-size: 0.95rem;
+}
+
+/* ---------------------------------------------------------
+   Small screens
+   --------------------------------------------------------- */
+@media (max-width: 560px) {
+    .dash-stat-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dash-stat dd {
+        font-size: 1.6rem;
+    }
+
+    .dash-table {
+        font-size: 0.9rem;
+    }
+
+    .dash-table th,
+    .dash-table td {
+        padding: 10px 12px;
+    }
+
+    .dash-filter {
+        gap: 10px;
+    }
+
+    .dash-filter .form-field {
+        flex: 1 1 100%;
+    }
+
+    .dash-confirm {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .dash-stat-grid {
+        grid-template-columns: 1fr;
+    }
 }

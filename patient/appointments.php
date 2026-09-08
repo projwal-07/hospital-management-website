@@ -76,7 +76,7 @@ require __DIR__ . '/../includes/header.php';
                     <input type="text" id="reason" name="reason" maxlength="500"
                            placeholder="e.g. no longer needed">
                 </div>
-                <button type="submit" class="button button-primary">Cancel appointment</button>
+                <button type="submit" class="button button-danger">Cancel appointment</button>
                 <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">Keep appointment</a>
             </form>
         </section>

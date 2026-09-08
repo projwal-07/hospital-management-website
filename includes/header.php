@@ -56,7 +56,9 @@ foreach (['success', 'info', 'error'] as $flashKey):
     if ($flashMsg === null) {
         continue;
     }
-    $cssClass = $flashKey === 'error' ? 'error' : 'success';
+    // $flashKey is always one of success | info | error, each of which
+    // has a matching .form-feedback style. Presentation only.
+    $cssClass = $flashKey;
 ?>
         <section class="container">
             <p class="form-feedback <?= $cssClass ?>" role="status"><?= e($flashMsg) ?></p>
