@@ -5,37 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hospital services and departments at Evergreen Community Hospital.">
     <title>Services - Evergreen Community Hospital</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=17">
     <script src="js/script.js" defer></script>
 </head>
 <body>
     <!-- Accessibility shortcut for keyboard users to bypass repeated navigation links. -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <!-- Top contact strip highlights urgent hospital information before the main header. -->
-    <aside class="utility-bar" aria-label="Hospital contact information"><section class="container"><span>Emergency Department: Open 24 hours</span><span>Phone: <a href="tel:+61291234567">(02) 9123 4567</a></span></section></aside>
+    <aside class="utility-bar" aria-label="Hospital contact information">
+        <section class="container">
+            <p class="utility-alert">
+                <svg class="utility-ico" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="10" width="16" height="10.5" rx="2"/><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/></svg>
+                <strong>Emergency Department: Open 24 hours</strong>
+                <span class="utility-note">For urgent medical care, please call or visit our emergency department.</span>
+            </p>
+            <p class="utility-phone">
+                <svg class="utility-ico" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+                <a href="tel:+61291234567">(02) 9123 4567</a>
+            </p>
+        </section>
+    </aside>
+
     <!-- Shared site header with branding, mobile menu button and primary navigation. -->
-    <header class="site-header"><section class="container header-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">+</span><span>Evergreen Community Hospital<small>Hospital Management System</small></span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button><nav class="main-nav" id="main-navigation" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html" aria-current="page">Services</a></li><li><a href="testimonials.html">Patient Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html">Contact</a></li></ul></nav></section></header>
+    <header class="site-header">
+        <section class="container header-row">
+            <a class="brand" href="index.html" aria-label="Evergreen Community Hospital home page">
+                <span class="brand-mark" aria-hidden="true">+</span>
+                <span>Evergreen Community Hospital
+                    <small>Hospital Management System</small>
+                </span>
+            </a>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button>
+            <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" aria-current="page">Services</a></li>
+                    <li><a href="testimonials.html">Patient Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a class="nav-login" href="auth/login.php">Log in</a></li>
+                    <li><a class="nav-register" href="auth/register.php">Register</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
 
     <main id="main-content">
         <!-- Page banner introduces the range of hospital departments. -->
         <header class="page-banner"><section class="container"><p class="kicker">Departments and services</p><h1>Everyday and specialist care</h1><p>Our departments work together while protecting patient privacy and providing clear information.</p></section></header>
         <!-- Department grid lists the main services available through the hospital. -->
         <section class="content-section"><section class="container"><header class="section-heading"><h2>Clinical departments</h2><p>Contact reception if you are unsure which service is suitable. A staff member can explain the general booking process.</p></header><section class="service-list">
-            <article><h2>Emergency Department</h2><p>24-hour assessment and stabilisation for urgent illness and injury.</p></article>
-            <article><h2>General Medicine</h2><p>Diagnosis and treatment of common adult medical conditions.</p></article>
-            <article><h2>Cardiology</h2><p>Heart health consultations, monitoring and diagnostic testing.</p></article>
-            <article><h2>Paediatrics</h2><p>Family-centred care for babies, children and teenagers.</p></article>
-            <article><h2>Orthopaedics</h2><p>Treatment and rehabilitation for bone, joint and mobility conditions.</p></article>
-            <article><h2>Medical Imaging</h2><p>X-ray, ultrasound and other imaging services supporting diagnosis.</p></article>
-            <article><h2>Pathology</h2><p>Laboratory testing requested by authorised healthcare professionals.</p></article>
-            <article><h2>Physiotherapy</h2><p>Individual recovery plans supporting movement, strength and independence.</p></article>
-            <article><h2>Outpatient Clinics</h2><p>Scheduled specialist consultations and follow-up appointments.</p></article>
+            <article><h3>Emergency Department</h3><p>24-hour assessment and stabilisation for urgent illness and injury.</p></article>
+            <article><h3>General Medicine</h3><p>Diagnosis and treatment of common adult medical conditions.</p></article>
+            <article><h3>Cardiology</h3><p>Heart health consultations, monitoring and diagnostic testing.</p></article>
+            <article><h3>Paediatrics</h3><p>Family-centred care for babies, children and teenagers.</p></article>
+            <article><h3>Orthopaedics</h3><p>Treatment and rehabilitation for bone, joint and mobility conditions.</p></article>
+            <article><h3>Medical Imaging</h3><p>X-ray, ultrasound and other imaging services supporting diagnosis.</p></article>
+            <article><h3>Pathology</h3><p>Laboratory testing requested by authorised healthcare professionals.</p></article>
+            <article><h3>Physiotherapy</h3><p>Individual recovery plans supporting movement, strength and independence.</p></article>
+            <article><h3>Outpatient Clinics</h3><p>Scheduled specialist consultations and follow-up appointments.</p></article>
         </section></section></section>
         <!-- Emergency notice separates urgent care instructions from normal appointment content. -->
         <section class="content-section alternate"><section class="container emergency-note"><h2>For a life-threatening emergency</h2><p>Call Triple Zero (000) immediately. Do not use the website appointment form for urgent medical help.</p><a href="tel:000">Call 000</a></section></section>
     </main>
 
     <!-- Shared footer repeats key links and fictional prototype contact details. -->
-    <footer class="site-footer"><section class="container footer-grid"><section><h2>Evergreen Community Hospital</h2><p>Practical, respectful healthcare for Western Sydney families.</p></section><nav aria-label="Footer navigation"><h3>Quick links</h3><ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="gallery.html">Facilities</a></li><li><a href="contact.html">Contact</a></li></ul></nav><section><h3>Contact</h3><address>42 Park Road, Parramatta NSW 2150<br><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></address><ul class="footer-social"><li><a href="https://www.facebook.com/" aria-label="Facebook">f</a></li><li><a href="https://www.instagram.com/" aria-label="Instagram">ig</a></li><li><a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a></li></ul></section></section><p class="copyright">Copyright &copy; <span id="current-year">2026</span> Evergreen Community Hospital.</p></footer>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="footer-mark" aria-hidden="true">+</span>
+                <p class="footer-name">Evergreen Community Hospital<small>Hospital Management System</small></p>
+                <p class="footer-tagline">Practical, respectful healthcare for Western Sydney families. Our commitment is to provide quality, accessible and compassionate care to our community.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer quick links">
+                <h2 class="footer-heading">Quick links</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Patient Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Footer patient access">
+                <h2 class="footer-heading">Patient access</h2>
+                <ul class="footer-links">
+                    <li><a href="auth/login.php">Log in</a></li>
+                    <li><a href="auth/register.php">Register as a patient</a></li>
+                    <li><a href="patient/book.php">Book an appointment</a></li>
+                    <li><a href="patient/appointments.php">My appointments</a></li>
+                </ul>
+            </nav>
+            <div class="footer-col footer-contact">
+                <h2 class="footer-heading">Contact</h2>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s-6.5-5.6-6.5-11A6.5 6.5 0 0 1 18.5 10.5c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10.5" r="2.3"/></svg>
+                        <span>42 Park Road, Parramatta NSW 2150</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+                        <a href="tel:+61291234567">(02) 9123 4567</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
+                        <a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copy">&copy; <span id="current-year">2026</span> Evergreen Community Hospital. All rights reserved.</p>
+                <p class="footer-motto"><span class="footer-motto-rule" aria-hidden="true"></span>Your health &middot; Our community &middot; A healthier tomorrow</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
