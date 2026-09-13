@@ -111,72 +111,89 @@ require __DIR__ . '/../includes/header.php';
         <p class="dash-empty">There are no active doctors available for booking at the moment.
            Please try again later or contact reception.</p>
     <?php else: ?>
-    <form action="<?= e(BASE_URL) ?>/patient/book.php" method="post" class="form-panel dash-form" novalidate>
+    <form action="<?= e(BASE_URL) ?>/patient/book.php" method="post" class="crud-form" novalidate>
         <?= csrf_field() ?>
-        <div class="form-grid">
-            <div class="form-field">
-                <label for="department_id">Department *</label>
-                <select id="department_id" name="department_id" required
-                        <?= isset($errors['department_id']) ? 'aria-invalid="true" aria-describedby="department_id-error"' : '' ?>>
-                    <option value="">Please choose</option>
-                    <?php foreach ($departments as $d): ?>
-                        <option value="<?= (int) $d['id'] ?>" <?= (string) $d['id'] === $values['department_id'] ? 'selected' : '' ?>>
-                            <?= e($d['name']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['department_id'])): ?>
-                    <p class="form-feedback error" id="department_id-error"><?= e($errors['department_id']) ?></p>
-                <?php endif; ?>
-            </div>
 
-            <div class="form-field">
-                <label for="doctor_id">Doctor *</label>
-                <select id="doctor_id" name="doctor_id" required
-                        <?= isset($errors['doctor_id']) ? 'aria-invalid="true" aria-describedby="doctor_id-error"' : 'aria-describedby="doctor_id-hint"' ?>>
-                    <option value="">Please choose</option>
-                    <?php foreach ($doctors as $doc): ?>
-                        <option value="<?= (int) $doc['id'] ?>"
-                                data-department="<?= (int) $doc['department_id'] ?>"
-                                <?= (string) $doc['id'] === $values['doctor_id'] ? 'selected' : '' ?>>
-                            <?= e($doc['full_name']) ?> &mdash; <?= e($doc['department_name']) ?> (<?= e($doc['specialisation']) ?>)
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['doctor_id'])): ?>
-                    <p class="form-feedback error" id="doctor_id-error"><?= e($errors['doctor_id']) ?></p>
-                <?php else: ?>
-                    <p id="doctor_id-hint" class="dash-note">The doctor must work in the department you selected.</p>
-                <?php endif; ?>
-            </div>
+        <div class="crud-form-head">
+            <h2>Appointment request</h2>
+            <p>Fields marked * are required.</p>
+        </div>
 
-            <div class="form-field">
-                <label for="appointment_date">Date * (weekday)</label>
-                <input type="date" id="appointment_date" name="appointment_date" required
-                       min="<?= e($bounds['min']) ?>" max="<?= e($bounds['max']) ?>"
-                       value="<?= e($values['appointment_date']) ?>"
-                       <?= isset($errors['appointment_date']) ? 'aria-invalid="true" aria-describedby="appointment_date-error"' : '' ?>>
-                <?php if (isset($errors['appointment_date'])): ?>
-                    <p class="form-feedback error" id="appointment_date-error"><?= e($errors['appointment_date']) ?></p>
-                <?php endif; ?>
-            </div>
+        <fieldset class="form-group">
+            <legend>Department and doctor</legend>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="department_id">Department *</label>
+                    <select id="department_id" name="department_id" required
+                            <?= isset($errors['department_id']) ? 'aria-invalid="true" aria-describedby="department_id-error"' : '' ?>>
+                        <option value="">Please choose</option>
+                        <?php foreach ($departments as $d): ?>
+                            <option value="<?= (int) $d['id'] ?>" <?= (string) $d['id'] === $values['department_id'] ? 'selected' : '' ?>>
+                                <?= e($d['name']) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <?php if (isset($errors['department_id'])): ?>
+                        <p class="form-feedback error" id="department_id-error"><?= e($errors['department_id']) ?></p>
+                    <?php endif; ?>
+                </div>
 
-            <div class="form-field">
-                <label for="appointment_time">Time *</label>
-                <select id="appointment_time" name="appointment_time" required
-                        <?= isset($errors['appointment_time']) ? 'aria-invalid="true" aria-describedby="appointment_time-error"' : '' ?>>
-                    <option value="">Please choose</option>
-                    <?php foreach ($slots as $value => $label): ?>
-                        <option value="<?= e($value) ?>" <?= $value === $values['appointment_time'] ? 'selected' : '' ?>>
-                            <?= e($label) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-                <?php if (isset($errors['appointment_time'])): ?>
-                    <p class="form-feedback error" id="appointment_time-error"><?= e($errors['appointment_time']) ?></p>
-                <?php endif; ?>
+                <div class="form-field">
+                    <label for="doctor_id">Doctor *</label>
+                    <select id="doctor_id" name="doctor_id" required
+                            <?= isset($errors['doctor_id']) ? 'aria-invalid="true" aria-describedby="doctor_id-error"' : 'aria-describedby="doctor_id-hint"' ?>>
+                        <option value="">Please choose</option>
+                        <?php foreach ($doctors as $doc): ?>
+                            <option value="<?= (int) $doc['id'] ?>"
+                                    data-department="<?= (int) $doc['department_id'] ?>"
+                                    <?= (string) $doc['id'] === $values['doctor_id'] ? 'selected' : '' ?>>
+                                <?= e($doc['full_name']) ?> &mdash; <?= e($doc['department_name']) ?> (<?= e($doc['specialisation']) ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <?php if (isset($errors['doctor_id'])): ?>
+                        <p class="form-feedback error" id="doctor_id-error"><?= e($errors['doctor_id']) ?></p>
+                    <?php else: ?>
+                        <p id="doctor_id-hint" class="dash-note">The doctor must work in the department you selected.</p>
+                    <?php endif; ?>
+                </div>
             </div>
+        </fieldset>
 
+        <fieldset class="form-group">
+            <legend>Date and time</legend>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="appointment_date">Date * (weekday)</label>
+                    <input type="date" id="appointment_date" name="appointment_date" required
+                           min="<?= e($bounds['min']) ?>" max="<?= e($bounds['max']) ?>"
+                           value="<?= e($values['appointment_date']) ?>"
+                           <?= isset($errors['appointment_date']) ? 'aria-invalid="true" aria-describedby="appointment_date-error"' : '' ?>>
+                    <?php if (isset($errors['appointment_date'])): ?>
+                        <p class="form-feedback error" id="appointment_date-error"><?= e($errors['appointment_date']) ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="form-field">
+                    <label for="appointment_time">Time *</label>
+                    <select id="appointment_time" name="appointment_time" required
+                            <?= isset($errors['appointment_time']) ? 'aria-invalid="true" aria-describedby="appointment_time-error"' : '' ?>>
+                        <option value="">Please choose</option>
+                        <?php foreach ($slots as $value => $label): ?>
+                            <option value="<?= e($value) ?>" <?= $value === $values['appointment_time'] ? 'selected' : '' ?>>
+                                <?= e($label) ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                    <?php if (isset($errors['appointment_time'])): ?>
+                        <p class="form-feedback error" id="appointment_time-error"><?= e($errors['appointment_time']) ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group">
+            <legend>Additional information</legend>
             <div class="form-field full-width">
                 <label for="reason">Reason for the appointment *</label>
                 <textarea id="reason" name="reason" required minlength="10" maxlength="500"
@@ -188,10 +205,12 @@ require __DIR__ . '/../includes/header.php';
                     <p id="reason-hint" class="dash-note">Between 10 and 500 characters.</p>
                 <?php endif; ?>
             </div>
-        </div>
+        </fieldset>
 
-        <button type="submit" class="button button-primary">Request appointment</button>
-        <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">Cancel</a>
+        <div class="crud-form-foot">
+            <button type="submit" class="button button-primary">Request appointment</button>
+            <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">Cancel</a>
+        </div>
     </form>
     <?php endif; ?>
 </div>

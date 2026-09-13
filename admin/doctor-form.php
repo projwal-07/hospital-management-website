@@ -126,8 +126,12 @@ require __DIR__ . '/../includes/header.php';
     <?php endif; ?>
 
     <form action="<?= e(BASE_URL) ?><?= $isEdit ? '/admin/doctor-form.php?id=' . (int) $doctor['id'] : '/admin/doctor-form.php' ?>"
-          method="post" class="form-panel dash-form" novalidate>
+          method="post" class="crud-form" novalidate>
         <?= csrf_field() ?>
+        <div class="crud-form-head">
+            <h2><?= $isEdit ? 'Edit doctor' : 'Add a doctor' ?></h2>
+            <p>Fields marked * are required.</p>
+        </div>
         <div class="form-grid">
             <div class="form-field">
                 <label for="full_name">Full name *</label>
@@ -222,8 +226,10 @@ require __DIR__ . '/../includes/header.php';
             </div>
         </div>
 
-        <button type="submit" class="button button-primary"><?= $isEdit ? 'Save changes' : 'Create doctor' ?></button>
-        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Cancel</a>
+        <div class="crud-form-foot">
+            <button type="submit" class="button button-primary"><?= $isEdit ? 'Save changes' : 'Create doctor' ?></button>
+            <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Cancel</a>
+        </div>
     </form>
 </div>
 

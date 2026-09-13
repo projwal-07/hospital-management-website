@@ -3,39 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact Evergreen Community Hospital or complete the appointment request form.">
+    <meta name="description" content="Contact Evergreen Community Hospital reception, or send a general enquiry. Appointments are booked in the online booking system.">
     <title>Contact - Evergreen Community Hospital</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=17">
     <script src="js/script.js" defer></script>
 </head>
 <body>
     <!-- Accessibility shortcut for keyboard users to bypass repeated navigation links. -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <!-- Top contact strip highlights urgent hospital information before the main header. -->
-    <aside class="utility-bar" aria-label="Hospital contact information"><section class="container"><span>Emergency Department: Open 24 hours</span><span>Phone: <a href="tel:+61291234567">(02) 9123 4567</a></span></section></aside>
+    <aside class="utility-bar" aria-label="Hospital contact information">
+        <section class="container">
+            <p class="utility-alert">
+                <svg class="utility-ico" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="10" width="16" height="10.5" rx="2"/><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3"/></svg>
+                <strong>Emergency Department: Open 24 hours</strong>
+                <span class="utility-note">For urgent medical care, please call or visit our emergency department.</span>
+            </p>
+            <p class="utility-phone">
+                <svg class="utility-ico" width="13" height="13" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+                <a href="tel:+61291234567">(02) 9123 4567</a>
+            </p>
+        </section>
+    </aside>
+
     <!-- Shared site header with branding, mobile menu button and primary navigation. -->
-    <header class="site-header"><section class="container header-row"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">+</span><span>Evergreen Community Hospital<small>Hospital Management System</small></span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button><nav class="main-nav" id="main-navigation" aria-label="Main navigation"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="testimonials.html">Patient Stories</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="contact.html" aria-current="page">Contact</a></li></ul></nav></section></header>
+    <header class="site-header">
+        <section class="container header-row">
+            <a class="brand" href="index.html" aria-label="Evergreen Community Hospital home page">
+                <span class="brand-mark" aria-hidden="true">+</span>
+                <span>Evergreen Community Hospital
+                    <small>Hospital Management System</small>
+                </span>
+            </a>
+            <button class="menu-button" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="Open navigation menu"><span></span></button>
+            <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Patient Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html" aria-current="page">Contact</a></li>
+                    <li><a class="nav-login" href="auth/login.php">Log in</a></li>
+                    <li><a class="nav-register" href="auth/register.php">Register</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
 
     <main id="main-content">
         <!-- Page banner sets expectations for general enquiries and non-urgent appointments. -->
-        <header class="page-banner"><section class="container"><p class="kicker">Contact and appointments</p><h1>Speak with our reception team</h1><p>Use the details below for general questions or complete the form for a non-urgent appointment request.</p></section></header>
-        <!-- Contact layout pairs static hospital details with the appointment request form. -->
+        <header class="page-banner"><section class="container"><p class="kicker">Get in touch</p><h1>Speak with our reception team</h1><p>Use the details below for general questions or send us a message. To book, change or cancel an appointment, use the online booking system.</p></section></header>
+        <!-- General-enquiry / reception page: booking CTA and hospital details on the left, a flat message form on the right. -->
         <section class="content-section"><section class="container contact-layout">
-            <!-- Fictional contact details are included for the educational prototype. -->
-            <aside class="contact-details"><h2>Hospital details</h2><address><strong>Address</strong><br>42 Park Road<br>Parramatta NSW 2150<br><br><strong>Telephone</strong><br><a href="tel:+61291234567">(02) 9123 4567</a><br><br><strong>Email</strong><br><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></address><h3>Office hours</h3><p>Monday-Friday: 8 am-6 pm<br>Saturday: 9 am-1 pm</p><h3>Social media</h3><ul class="social-list"><li><a href="https://www.facebook.com/">Facebook</a></li><li><a href="https://www.instagram.com/">Instagram</a></li><li><a href="https://www.linkedin.com/">LinkedIn</a></li></ul></aside>
+            <div class="contact-aside">
+                <!-- Booking is a separate call to action, kept out of the enquiry form. -->
+                <div class="contact-book">
+                    <h2>Book an appointment</h2>
+                    <p>Use the online booking system to book or manage appointments.</p>
+                    <a class="button button-primary" href="patient/book.php">Book an Appointment</a>
+                </div>
 
-            <!-- Form uses HTML validation and JavaScript feedback without transmitting data. -->
-            <section class="form-panel"><h2>Appointment request form</h2><p>This prototype form validates your entries but does not send or store personal information. Required fields are marked with an asterisk (*).</p>
-                <form id="appointment-form" novalidate>
-                    <section class="form-grid">
-                        <section class="form-field"><label for="full-name">Full name *</label><input id="full-name" name="full-name" type="text" minlength="2" autocomplete="name" required></section>
-                        <section class="form-field"><label for="email">Email address *</label><input id="email" name="email" type="email" autocomplete="email" required></section>
-                        <section class="form-field"><label for="phone">Telephone *</label><input id="phone" name="phone" type="tel" pattern="[0-9+() -]{8,18}" title="Use 8 to 18 numbers or phone symbols" autocomplete="tel" required></section>
-                        <section class="form-field"><label for="department">Department *</label><select id="department" name="department" required><option value="">Please select</option><option>General Medicine</option><option>Cardiology</option><option>Paediatrics</option><option>Orthopaedics</option><option>Medical Imaging</option><option>Physiotherapy</option></select></section>
-                        <section class="form-field full-width"><label for="preferred-date">Preferred date *</label><input id="preferred-date" name="preferred-date" type="date" required></section>
-                        <section class="form-field full-width"><label for="message">Reason for appointment *</label><textarea id="message" name="message" minlength="10" required></textarea></section>
-                    </section>
-                    <button class="button button-primary" type="submit">Submit request</button>
+                <!-- Fictional contact details are included for the educational prototype. -->
+                <aside class="contact-details">
+                    <h2>Hospital details</h2>
+                    <ul class="contact-rows">
+                        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s-6.5-5.6-6.5-11A6.5 6.5 0 0 1 18.5 10.5c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10.5" r="2.3"/></svg><span><strong>Location</strong>42 Park Road, Parramatta NSW 2150</span></li>
+                        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg><span><strong>Phone</strong><a href="tel:+61291234567">(02) 9123 4567</a></span></li>
+                        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg><span><strong>Email</strong><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></span></li>
+                    </ul>
+                    <h3>Office hours</h3>
+                    <p>Monday-Friday: 8 am-6 pm<br>Saturday: 9 am-1 pm</p>
+                    <h3>Social media</h3>
+                    <ul class="social-list"><li><a href="https://www.facebook.com/">Facebook</a></li><li><a href="https://www.instagram.com/">Instagram</a></li><li><a href="https://www.linkedin.com/">LinkedIn</a></li></ul>
+                </aside>
+            </div>
+
+            <!-- Flat general-enquiry form. JavaScript demo only: nothing is sent or stored. -->
+            <section class="form-panel">
+                <h2>Send us a message</h2>
+                <p>Use this form for general questions. Appointment bookings should be made through the online booking system.</p>
+                <p class="form-note">This demonstration form checks your entries but does not send or store any information. Required fields are marked with an asterisk (*).</p>
+                <form id="enquiry-form" novalidate>
+                    <div class="form-grid">
+                        <div class="form-field"><label for="enquiry-name">Full name *</label><input id="enquiry-name" name="name" type="text" minlength="2" autocomplete="name" required></div>
+                        <div class="form-field"><label for="enquiry-email">Email address *</label><input id="enquiry-email" name="email" type="email" autocomplete="email" required></div>
+                        <div class="form-field"><label for="enquiry-phone">Phone number *</label><input id="enquiry-phone" name="phone" type="tel" pattern="[0-9+() -]{8,18}" title="Use 8 to 18 numbers or phone symbols" autocomplete="tel" required></div>
+                        <div class="form-field"><label for="enquiry-topic">Enquiry topic *</label><select id="enquiry-topic" name="topic" required><option value="">Please choose</option><option>General enquiry</option><option>Billing / accounts</option><option>Medical records enquiry</option><option>Website help</option><option>Other</option></select></div>
+                        <div class="form-field full-width"><label for="enquiry-message">Message *</label><textarea id="enquiry-message" name="message" minlength="10" required placeholder="How can our reception team help?"></textarea></div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="button button-primary" type="submit">Send message</button>
+                    </div>
                     <p class="form-feedback" id="form-feedback" role="status" aria-live="polite" tabindex="-1"></p>
                 </form>
             </section>
@@ -43,6 +103,57 @@
     </main>
 
     <!-- Shared footer repeats key links and fictional prototype contact details. -->
-    <footer class="site-footer"><section class="container footer-grid"><section><h2>Evergreen Community Hospital</h2><p>Practical, respectful healthcare for Western Sydney families.</p></section><nav aria-label="Footer navigation"><h3>Quick links</h3><ul class="footer-links"><li><a href="services.html">Services</a></li><li><a href="gallery.html">Facilities</a></li><li><a href="contact.html">Contact</a></li></ul></nav><section><h3>Contact</h3><address>42 Park Road, Parramatta NSW 2150<br><a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a></address><ul class="footer-social"><li><a href="https://www.facebook.com/" aria-label="Facebook">f</a></li><li><a href="https://www.instagram.com/" aria-label="Instagram">ig</a></li><li><a href="https://www.linkedin.com/" aria-label="LinkedIn">in</a></li></ul></section></section><p class="copyright">Copyright &copy; <span id="current-year">2026</span> Evergreen Community Hospital.</p></footer>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="footer-mark" aria-hidden="true">+</span>
+                <p class="footer-name">Evergreen Community Hospital<small>Hospital Management System</small></p>
+                <p class="footer-tagline">Practical, respectful healthcare for Western Sydney families. Our commitment is to provide quality, accessible and compassionate care to our community.</p>
+            </div>
+            <nav class="footer-col" aria-label="Footer quick links">
+                <h2 class="footer-heading">Quick links</h2>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Patient Stories</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <nav class="footer-col" aria-label="Footer patient access">
+                <h2 class="footer-heading">Patient access</h2>
+                <ul class="footer-links">
+                    <li><a href="auth/login.php">Log in</a></li>
+                    <li><a href="auth/register.php">Register as a patient</a></li>
+                    <li><a href="patient/book.php">Book an appointment</a></li>
+                    <li><a href="patient/appointments.php">My appointments</a></li>
+                </ul>
+            </nav>
+            <div class="footer-col footer-contact">
+                <h2 class="footer-heading">Contact</h2>
+                <ul class="footer-contact-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.5s-6.5-5.6-6.5-11A6.5 6.5 0 0 1 18.5 10.5c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10.5" r="2.3"/></svg>
+                        <span>42 Park Road, Parramatta NSW 2150</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9z"/></svg>
+                        <a href="tel:+61291234567">(02) 9123 4567</a>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6 9 6.5L21 6"/></svg>
+                        <a href="mailto:reception@evergreenhospital.example">reception@evergreenhospital.example</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copy">&copy; <span id="current-year">2026</span> Evergreen Community Hospital. All rights reserved.</p>
+                <p class="footer-motto"><span class="footer-motto-rule" aria-hidden="true"></span>Your health &middot; Our community &middot; A healthier tomorrow</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

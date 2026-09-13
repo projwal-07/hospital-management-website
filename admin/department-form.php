@@ -71,8 +71,12 @@ require __DIR__ . '/../includes/header.php';
     <?php endif; ?>
 
     <form action="<?= e(BASE_URL) ?><?= $isEdit ? '/admin/department-form.php?id=' . (int) $department['id'] : '/admin/department-form.php' ?>"
-          method="post" class="form-panel dash-form" novalidate>
+          method="post" class="crud-form" novalidate>
         <?= csrf_field() ?>
+        <div class="crud-form-head">
+            <h2><?= $isEdit ? 'Edit department' : 'Add a department' ?></h2>
+            <p>Fields marked * are required.</p>
+        </div>
         <div class="form-grid">
             <div class="form-field full-width">
                 <label for="name">Name *</label>
@@ -92,8 +96,10 @@ require __DIR__ . '/../includes/header.php';
                 <?php endif; ?>
             </div>
         </div>
-        <button type="submit" class="button button-primary"><?= $isEdit ? 'Save changes' : 'Create department' ?></button>
-        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Cancel</a>
+        <div class="crud-form-foot">
+            <button type="submit" class="button button-primary"><?= $isEdit ? 'Save changes' : 'Create department' ?></button>
+            <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Cancel</a>
+        </div>
     </form>
 </div>
 

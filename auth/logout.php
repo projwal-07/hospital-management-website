@@ -29,25 +29,27 @@ require __DIR__ . '/../includes/header.php';
 
 $currentUser = current_user();
 ?>
-<section class="page-banner">
-    <section class="container">
-        <h1>Log out</h1>
-    </section>
-</section>
-
-<section class="content-section">
-    <section class="container">
-        <?php if ($currentUser !== null): ?>
-            <p>You are signed in as <strong><?= e($currentUser['full_name']) ?></strong>. Do you want to log out?</p>
-            <form action="<?= e(BASE_URL) ?>/auth/logout.php" method="post">
-                <?= csrf_field() ?>
-                <button type="submit" class="button button-primary">Log out</button>
-                <a class="button button-light" href="<?= e(dashboard_url_for($currentUser['role'])) ?>">Cancel</a>
-            </form>
-        <?php else: ?>
-            <p>You are not logged in.</p>
-            <p><a class="button button-primary" href="<?= e(BASE_URL) ?>/auth/login.php">Log in</a></p>
-        <?php endif; ?>
-    </section>
+<section class="auth-shell">
+    <div class="container">
+        <div class="auth-card auth-card--narrow">
+            <div class="auth-main">
+                <p class="kicker">Account access</p>
+                <h1>Log out</h1>
+                <?php if ($currentUser !== null): ?>
+                    <p class="auth-lead">You are signed in as <strong><?= e($currentUser['full_name']) ?></strong>. Do you want to log out?</p>
+                    <form action="<?= e(BASE_URL) ?>/auth/logout.php" method="post">
+                        <?= csrf_field() ?>
+                        <div class="form-actions">
+                            <button type="submit" class="button button-primary">Log out</button>
+                            <a class="button button-light" href="<?= e(dashboard_url_for($currentUser['role'])) ?>">Cancel</a>
+                        </div>
+                    </form>
+                <?php else: ?>
+                    <p class="auth-lead">You are not logged in.</p>
+                    <p><a class="button button-primary" href="<?= e(BASE_URL) ?>/auth/login.php">Log in</a></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </section>
 <?php require __DIR__ . '/../includes/footer.php'; ?>

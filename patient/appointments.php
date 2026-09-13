@@ -47,7 +47,7 @@ require __DIR__ . '/../includes/header.php';
     <section class="container">
         <p class="kicker">Patient area</p>
         <h1>My appointments</h1>
-        <p>Signed in as <strong><?= e($user['full_name']) ?></strong> &middot; role: patient</p>
+        <p>Review, book and cancel your appointments.</p>
     </section>
 </section>
 
@@ -76,14 +76,16 @@ require __DIR__ . '/../includes/header.php';
                     <input type="text" id="reason" name="reason" maxlength="500"
                            placeholder="e.g. no longer needed">
                 </div>
-                <button type="submit" class="button button-danger">Cancel appointment</button>
-                <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">Keep appointment</a>
+                <div class="form-actions">
+                    <button type="submit" class="button button-danger">Cancel appointment</button>
+                    <a class="button button-light" href="<?= e(BASE_URL) ?>/patient/appointments.php">Keep appointment</a>
+                </div>
             </form>
         </section>
     <?php endif; ?>
 
     <section class="dash-section" aria-labelledby="list-heading">
-        <h2 id="list-heading">All appointments</h2>
+        <h2 id="list-heading"><?= svg_icon('list') ?>All appointments</h2>
         <?php if (!$appointments): ?>
             <p class="dash-empty">You have no appointments yet.
                <a href="<?= e(BASE_URL) ?>/patient/book.php">Book your first appointment</a>.</p>
@@ -104,12 +106,12 @@ require __DIR__ . '/../includes/header.php';
                     <tbody>
                         <?php foreach ($appointments as $a): ?>
                             <tr>
-                                <th scope="row"><?= e(fmt_date($a['appointment_date'])) ?></th>
-                                <td><?= e(fmt_time($a['appointment_time'])) ?></td>
-                                <td><?= e($a['doctor_name']) ?></td>
-                                <td><?= e($a['department_name']) ?></td>
-                                <td><span class="<?= e(status_class($a['status'])) ?>"><?= e(status_label($a['status'])) ?></span></td>
-                                <td>
+                                <th scope="row" data-label="Date"><?= e(fmt_date($a['appointment_date'])) ?></th>
+                                <td data-label="Time"><?= e(fmt_time($a['appointment_time'])) ?></td>
+                                <td data-label="Doctor"><?= e($a['doctor_name']) ?></td>
+                                <td data-label="Department"><?= e($a['department_name']) ?></td>
+                                <td data-label="Status"><span class="<?= e(status_class($a['status'])) ?>"><?= e(status_label($a['status'])) ?></span></td>
+                                <td data-label="Action">
                                     <?php if (patient_can_cancel($a)): ?>
                                         <a href="<?= e(BASE_URL) ?>/patient/appointments.php?action=cancel&amp;id=<?= (int) $a['id'] ?>">Cancel</a>
                                     <?php else: ?>

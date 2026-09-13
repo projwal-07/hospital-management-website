@@ -13,6 +13,8 @@ if (!defined('BASE_URL')) {
     require_once __DIR__ . '/auth.php';
 }
 
+require_once __DIR__ . '/icons.php';   // presentation-only inline SVG helper
+
 $page_title = $page_title ?? 'Hospital Management System';
 ?>
 <!DOCTYPE html>
@@ -22,8 +24,8 @@ $page_title = $page_title ?? 'Hospital Management System';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title><?= e($page_title) ?> - Evergreen Community Hospital</title>
-    <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/style.css">
-    <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/dashboard.css">
+    <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/style.css?v=17">
+    <link rel="stylesheet" href="<?= e(BASE_URL) ?>/css/dashboard.css?v=18">
     <script src="<?= e(BASE_URL) ?>/js/script.js" defer></script>
 </head>
 <body>
@@ -31,8 +33,15 @@ $page_title = $page_title ?? 'Hospital Management System';
 
     <aside class="utility-bar" aria-label="Hospital contact information">
         <section class="container">
-            <span>Emergency Department: Open 24 hours</span>
-            <span>Phone: <a href="tel:+61291234567">(02) 9123 4567</a></span>
+            <p class="utility-alert">
+                <?= svg_icon('lock', ['class' => 'utility-ico']) ?>
+                <strong>Emergency Department: Open 24 hours</strong>
+                <span class="utility-note">For urgent medical care, please call or visit our emergency department.</span>
+            </p>
+            <p class="utility-phone">
+                <?= svg_icon('phone', ['class' => 'utility-ico']) ?>
+                <a href="tel:+61291234567">(02) 9123 4567</a>
+            </p>
         </section>
     </aside>
 

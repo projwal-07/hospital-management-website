@@ -5,32 +5,55 @@
    Loaded IN ADDITION TO, and AFTER, css/style.css, and only
    on the dynamic PHP pages.
 
-   The shared visual system - palette, tokens, buttons, form
-   controls, feedback messages, page banners, header, footer -
-   now lives in css/style.css so the public website and the
-   application look like one site. This file only adds the
-   pieces that exist only inside the signed-in application:
-   the .dash-* dashboard/CRUD components and a comfortable
-   width for the authentication forms.
+   The shared design system - palette, tokens, buttons, form
+   controls, feedback, page banners, header and footer - lives
+   in css/style.css so the public site and the application look
+   like one hospital website. This file adds only the pieces
+   that exist inside the signed-in application: the .dash-*
+   dashboard/CRUD components, the .auth-* sign-in screens and
+   the .crud-form record forms.
    ========================================================= */
+
+/* ---------------------------------------------------------
+   Inline icons (markup from includes/icons.php)
+   --------------------------------------------------------- */
+.ico {
+    flex: none;
+    display: inline-block;
+    vertical-align: middle;
+}
 
 /* ---------------------------------------------------------
    Page rhythm
    --------------------------------------------------------- */
 .dash {
-    padding: clamp(24px, 5vw, 40px) 0 clamp(36px, 8vw, 56px);
+    padding: clamp(24px, 5vw, 44px) 0 clamp(40px, 8vw, 64px);
 }
 
 .dash-section {
-    margin-bottom: clamp(26px, 6vw, 40px);
+    margin-bottom: clamp(26px, 5vw, 40px);
 }
 
 .dash-section > h2 {
-    margin: 0 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 18px;
     color: var(--navy);
-    font-size: clamp(1.3rem, 4vw, 1.65rem);
+    font-size: clamp(1.28rem, 3.3vw, 1.62rem);
+    line-height: 1.25;
+}
+
+/* Small meaningful icon in a soft green tile for each section heading. */
+.dash-section > h2 .ico {
+    flex: none;
+    box-sizing: content-box;
+    width: 20px;
+    height: 20px;
+    padding: 7px;
+    color: var(--green);
+    background: rgba(47, 125, 104, 0.12);
+    border-radius: var(--radius-sm);
 }
 
 .dash-section > h3 {
@@ -40,15 +63,100 @@
 }
 
 /* ---------------------------------------------------------
-   Primary action row (Book / Manage ...)
+   Quick actions (Book / Manage ...)
    --------------------------------------------------------- */
+/* Toolbar: a plain row of buttons above a list or table (a "Back to
+   dashboard" link, "Add a doctor", etc.). Wraps on narrow screens; the
+   global <=649px rule already makes each .button full width there. */
 .dash-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: clamp(22px, 5vw, 30px);
-    padding-bottom: clamp(16px, 4vw, 22px);
+    gap: 12px;
+    margin-bottom: clamp(18px, 3vw, 26px);
+    padding-bottom: clamp(16px, 2.6vw, 22px);
     border-bottom: 1px solid var(--line);
+}
+
+/* Quick-action cards on the three dashboards: compact, left-aligned,
+   never stretched across a wide dashboard. One per row on a phone. */
+.dash-quick {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: clamp(20px, 3.5vw, 30px);
+    padding-bottom: clamp(18px, 3vw, 24px);
+    border-bottom: 1px solid var(--line);
+}
+
+@media (min-width: 560px) {
+    .dash-quick {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 280px));
+        justify-content: start;
+    }
+}
+
+.dash-action-card {
+    /* Real <a href> - the whole card is the link. position/z-index keep
+       it above any adjacent content so nothing can intercept the click;
+       cursor is stated explicitly. */
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    color: var(--navy);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+}
+
+/* The icon tile and any label span never swallow the click. */
+.dash-action-card > * { pointer-events: none; }
+
+.dash-action-card:hover {
+    border-color: #b7c9d0;
+    box-shadow: var(--shadow-md);
+}
+
+.dash-action-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 34px;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(47, 125, 104, 0.12);
+    color: var(--green);
+}
+
+.dash-action-icon .ico {
+    width: 20px;
+    height: 20px;
+}
+
+.dash-action-card--primary {
+    color: #ffffff;
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.dash-action-card--primary:hover {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+}
+
+.dash-action-card--primary .dash-action-icon {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
 }
 
 /* ---------------------------------------------------------
@@ -56,43 +164,80 @@
    --------------------------------------------------------- */
 .dash-stat-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 16px;
     margin: 0;
+}
+
+/* 641px+ : auto-fit (2-5 across). 401-640 : two columns. <=400 : one. */
+@media (max-width: 640px) {
+    .dash-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .dash-stat {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);   /* text track must be able to shrink */
+    column-gap: 14px;
+    row-gap: 4px;
+    align-content: center;
     padding: 16px 18px;
-    background: var(--white);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-top: 3px solid var(--green);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    transition: box-shadow 0.18s ease;
+    transition: box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+/* Meaningful icon tile (markup: span.dash-stat-glyph). */
+.dash-stat-glyph {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius);
+    background: rgba(47, 125, 104, 0.12);
+    color: var(--green);
+}
+
+.dash-stat-glyph .ico {
+    width: 20px;
+    height: 20px;
 }
 
 .dash-stat:hover {
+    border-color: #b7c9d0;
     box-shadow: var(--shadow-md);
 }
 
+.dash-stat dt,
+.dash-stat dd {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
 .dash-stat dt {
+    grid-column: 2;
+    align-self: end;
     margin: 0;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: bold;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .dash-stat dd {
+    grid-column: 2;
+    align-self: start;
     margin: 0;
     color: var(--navy);
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 1.85rem;
-    line-height: 1.1;
+    font-size: 1.8rem;
+    line-height: 1.05;
 }
 
 .dash-stat dd small {
@@ -105,7 +250,9 @@
    Tables
    --------------------------------------------------------- */
 .dash-table-wrap {
+    min-width: 0;   /* shrink to its grid/flex track; the table scrolls inside */
     overflow-x: auto;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
@@ -117,19 +264,20 @@
     font-size: 0.95rem;
 }
 
+/* Caption acts as the table's title bar. */
 .dash-table caption {
-    padding: 11px 14px;
-    background: var(--pale-blue);
+    padding: 15px 18px;
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
     color: var(--navy);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
     text-align: left;
 }
 
 .dash-table th,
 .dash-table td {
-    padding: 12px 14px;
+    padding: 14px 18px;
     text-align: left;
     vertical-align: top;
     border-top: 1px solid var(--line);
@@ -137,13 +285,13 @@
 }
 
 .dash-table thead th {
-    background: #f2f7f9;
+    background: var(--surface-2);
     border-top: 0;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border);
     color: var(--muted);
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: bold;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
@@ -154,12 +302,12 @@
 
 .dash-table tbody tr:nth-child(even) th[scope="row"],
 .dash-table tbody tr:nth-child(even) td {
-    background: #f7fafc;
+    background: #f8fbfc;
 }
 
 .dash-table tbody tr:hover th[scope="row"],
 .dash-table tbody tr:hover td {
-    background: #eaf2f6;
+    background: #eef5f8;
 }
 
 .dash-table a {
@@ -173,18 +321,26 @@
     white-space: normal;
 }
 
+/* Grouped row actions (Edit / Deactivate / Delete). */
+.dash-row-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 14px;
+}
+
 /* ---------------------------------------------------------
-   Status badges - dot + text; colour only reinforces
+   Status badges - chip shape, dot + text; colour reinforces
    --------------------------------------------------------- */
 .dash-status {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    min-width: 92px;
-    padding: 3px 12px;
+    gap: 7px;
+    min-width: 96px;
+    padding: 4px 11px;
     border: 1px solid currentColor;
-    border-radius: 999px;
-    font-size: 0.78rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.76rem;
     font-weight: bold;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -210,24 +366,25 @@
    --------------------------------------------------------- */
 .dash-empty {
     margin: 0;
-    padding: 18px 20px;
-    background: var(--pale-blue);
-    border: 1px solid #cfe3ea;
-    border-left: 4px solid var(--blue);
+    padding: 22px 24px;
+    background: var(--surface);
+    border: 1px dashed #b9cdd5;
     border-radius: var(--radius);
-    color: var(--text);
+    color: var(--muted);
 }
 
+.dash-empty a { color: var(--blue); font-weight: bold; }
+
 .dash-note {
-    margin: 0 0 12px;
+    margin: 0 0 14px;
     color: var(--muted);
     font-size: 0.9rem;
 }
 
-/* Helper text sitting directly under a field. */
+/* Helper text directly under a field. */
 .form-field .dash-note,
 .form-field p[id$="-hint"] {
-    margin: 6px 0 0;
+    margin: 7px 0 0;
     color: var(--muted);
     font-size: 0.88rem;
 }
@@ -237,45 +394,43 @@
    --------------------------------------------------------- */
 .dash-subgrid {
     display: grid;
-    gap: clamp(20px, 5vw, 32px);
+    gap: clamp(20px, 4vw, 32px);
 }
 
-@media (min-width: 860px) {
+@media (min-width: 880px) {
     .dash-subgrid--2 {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: start;
     }
 }
 
 /* ---------------------------------------------------------
-   Filters, forms and confirmation panels
+   Filters and confirmation panels
    --------------------------------------------------------- */
 .dash-filter {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
-    gap: 14px;
-    margin-bottom: 20px;
-    padding: 14px 16px;
-    background: var(--pale-blue);
+    gap: 16px;
+    margin-bottom: 22px;
+    padding: 16px 18px;
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
 }
 
 .dash-filter .form-field {
     margin: 0;
-}
-
-.dash-form {
-    max-width: 640px;
-    margin-top: 4px;
+    min-width: 0;
 }
 
 .dash-confirm {
-    margin-bottom: clamp(24px, 6vw, 38px);
-    padding: 18px 20px;
-    background: #fff7e6;
-    border: 1px solid #e6c37a;
+    max-width: 820px;
+    margin-bottom: clamp(24px, 5vw, 36px);
+    padding: 22px 24px;
+    background: #fff8ea;
+    border: 1px solid #e8cd93;
     border-left: 4px solid var(--warning);
     border-radius: var(--radius);
 }
@@ -283,12 +438,12 @@
 .dash-confirm > h2 {
     margin-top: 0;
     color: var(--navy);
-    font-size: 1.25rem;
+    font-size: 1.2rem;
 }
 
-.dash-confirm form {
-    margin-top: 4px;
-}
+.dash-confirm form { margin-top: 10px; }
+
+.dash-confirm .form-field { max-width: 460px; }
 
 /* Small inline POST form (activate/deactivate in a table row). */
 .dash-inline-form {
@@ -311,53 +466,297 @@
     color: var(--navy);
 }
 
-/* Spacing for a submit / secondary pair. */
-.form-panel .button + .button,
-.form-panel .button + a.button,
-.dash-confirm .button + .button,
-.dash-confirm .button + a.button {
-    margin-left: 8px;
+/* =========================================================
+   Record forms (Book appointment, Doctor, Department)
+   ========================================================= */
+/* The pre-form error summary sits directly in the .dash container; keep
+   it the same width as, and centred with, the record form below it. */
+.dash > .form-feedback {
+    max-width: 960px;
+    margin-inline: auto;
 }
 
-/* ---------------------------------------------------------
-   Authentication pages (login / register / logout)
-   .content-section is used only by these pages in the
-   dynamic app. Give the form a deliberate, comfortable width
-   and reduce the surrounding empty space.
-   --------------------------------------------------------- */
-.content-section {
-    padding: clamp(22px, 5vw, 34px) 0 clamp(40px, 8vw, 56px);
+.crud-form {
+    counter-reset: fgstep;
+    max-width: 960px;
+    margin: 4px auto 0;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
 }
 
-.content-section .form-panel,
-.content-section > .container > .form-feedback {
-    max-width: 460px;
-    margin-left: auto;
-    margin-right: auto;
+.crud-form-head {
+    padding: 20px clamp(20px, 3vw, 28px);
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
 }
 
-.content-section .form-grid {
-    grid-template-columns: 1fr;
+.crud-form-head h2 {
+    margin: 0 0 4px;
+    color: var(--navy);
+    font-size: 1.18rem;
 }
 
-/* "No account yet? ..." / "Already registered? ..." line */
-.content-section .form-panel > p {
-    margin-top: 18px;
-    padding-top: 14px;
+.crud-form-head p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+}
+
+.crud-form > .form-group,
+.crud-form > .form-grid,
+.crud-form > .form-field,
+.crud-form > .crud-form-foot {
+    padding: clamp(22px, 3vw, 26px) clamp(20px, 3vw, 28px);
+}
+
+/* Slightly wider field spacing inside the record forms. */
+.crud-form .form-grid { gap: 20px; }
+
+/* Fieldset groups inside a record form. */
+.form-group {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.crud-form > .form-group + *,
+.crud-form > .form-grid + *,
+.crud-form > .form-field + * {
     border-top: 1px solid var(--line);
+}
+
+.crud-form .form-group { counter-increment: fgstep; }
+
+.form-group > legend {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0;
+    margin-bottom: 16px;
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* Numbered step badge. */
+.crud-form .form-group > legend::before {
+    content: counter(fgstep);
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    background: var(--green);
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 0.82rem;
+    font-weight: bold;
+}
+
+.crud-form-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: var(--surface-2);
+    border-top: 1px solid var(--border);
+}
+
+/* =========================================================
+   Authentication screens (login / register / logout)
+   ========================================================= */
+.auth-shell {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: clamp(24px, 2.6vw, 34px) 0 clamp(36px, 4vw, 48px);
+}
+
+.auth-card {
+    display: grid;
+    width: 100%;
+    max-width: 900px;
+    margin-inline: auto;   /* centre within the container */
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.auth-card--narrow {
+    max-width: 520px;
+}
+
+/* Register carries a little more width than login: it has a genuine
+   two-column field grid to accommodate. */
+.auth-card--wide {
+    max-width: 960px;
+}
+
+/* Decorative left panel: kept compact so it never pushes the form
+   below the fold on a laptop. */
+.auth-brand {
+    display: none;
+    padding: clamp(20px, 2.4vw, 26px);
+    color: #dbe8ef;
+    background:
+        linear-gradient(165deg, rgba(18, 57, 91, 0.92) 0%, rgba(12, 45, 71, 0.96) 100%),
+        url("../images/hospital-exterior.jpg") center / cover no-repeat;
+}
+
+.auth-brand-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 14px;
+    color: var(--white);
+    background: var(--green);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    font-family: Arial, sans-serif;
+    font-size: 1.55rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.auth-brand-name {
+    margin: 0 0 5px;
+    color: var(--white);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.06rem;
+    font-weight: bold;
+}
+
+.auth-brand-sub {
+    margin: 0 0 12px;
+    color: #a9c4d4;
+    font-size: 0.72rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.auth-brand-copy {
+    margin: 0;
+    color: #b7cad4;
+    font-size: 0.86rem;
+    line-height: 1.55;
+}
+
+.auth-main {
+    padding: clamp(20px, 2.6vw, 28px) clamp(22px, 3vw, 32px);
+}
+
+.auth-main .kicker {
+    margin: 0 0 8px;
+    color: var(--green-dark); /* >= 4.5:1 on white */
+}
+
+.auth-main h1 {
+    margin: 0 0 10px;
+    font-size: clamp(1.45rem, 3vw, 1.7rem);
+}
+
+.auth-lead {
+    margin: 0 0 22px;
+    color: var(--muted);
+}
+
+/* Low-emphasis one-time notice (e.g. "Please log in to continue.")
+   shown compactly INSIDE the card instead of a full-width page banner. */
+.auth-notice {
+    margin: 0 0 18px;
+    padding: 9px 12px;
+    color: var(--navy);
+    background: var(--pale-blue);
+    border: 1px solid var(--blue);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    line-height: 1.45;
+}
+
+.auth-notice--success {
+    color: #1f5f52;
+    background: #e6f3ee;
+    border-color: #bfe0d4;
+}
+
+/* Register field grid: equal columns (no field ever narrower than its
+   neighbour) and readable, non-oversized labels / helper text. */
+.auth-main .form-field { min-width: 0; }
+
+.auth-main .form-field label { font-size: 0.86rem; }
+
+.auth-main .form-field > p:not(.form-feedback) {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* One column on a phone; a compact two-column grid on the desktop
+   card (safe fields pair up, full-width fields still span). */
+.auth-main .form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+/* Submit sits well clear of the last field. A lone submit (login /
+   register) fills the panel width; a two-button row (logout confirm)
+   keeps its buttons auto-width and side by side on desktop. */
+.auth-main .form-actions {
+    margin-top: 22px;
+}
+
+.auth-main .form-actions > .button:only-child {
+    width: 100%;
+}
+
+.auth-alt {
+    margin: 18px 0 0;
     font-size: 0.95rem;
+    text-align: center;
+}
+
+.auth-card .form-feedback {
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+@media (min-width: 760px) {
+    .auth-card {
+        grid-template-columns: 0.62fr 1fr;   /* left ~38%, form ~62% */
+    }
+
+    .auth-card--narrow {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-brand {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .auth-main .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* ---------------------------------------------------------
    Small screens
    --------------------------------------------------------- */
 @media (max-width: 560px) {
-    .dash-stat-grid {
-        grid-template-columns: 1fr 1fr;
+    .dash-stat {
+        padding: 16px 18px;
     }
 
     .dash-stat dd {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
     }
 
     .dash-table {
@@ -366,11 +765,11 @@
 
     .dash-table th,
     .dash-table td {
-        padding: 10px 12px;
+        padding: 11px 13px;
     }
 
     .dash-filter {
-        gap: 10px;
+        gap: 12px;
     }
 
     .dash-filter .form-field {
@@ -378,12 +777,303 @@
     }
 
     .dash-confirm {
-        padding: 16px;
+        padding: 18px;
     }
 }
 
 @media (max-width: 400px) {
     .dash-stat-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   Phone layout for wide data tables (<= 640px)
+
+   Each table row is re-flowed into a self-labelling card so
+   there is no horizontal scrolling. The column headings are
+   hidden visually; every cell repeats its heading from the
+   data-label attribute set in the PHP. Tablet and desktop
+   keep the normal table.
+   ========================================================= */
+@media (max-width: 640px) {
+    .dash-table-wrap {
+        overflow: visible;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .dash-table {
+        font-size: 0.95rem;
+    }
+
+    .dash-table caption {
+        display: block;
+        padding: 0 2px 12px;
+        background: transparent;
+        border: 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+
+    /* Visually hide the header row; each cell now labels itself. */
+    .dash-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .dash-table,
+    .dash-table tbody,
+    .dash-table tr,
+    .dash-table th,
+    .dash-table td {
+        display: block;
+        width: auto;
+    }
+
+    /* One card per record. */
+    .dash-table tbody tr {
+        margin-bottom: 14px;
+        overflow: hidden;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .dash-table tbody tr:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Neutralise the desktop zebra / hover backgrounds. */
+    .dash-table tbody tr:nth-child(even) th[scope="row"],
+    .dash-table tbody tr:nth-child(even) td,
+    .dash-table tbody tr:hover th[scope="row"],
+    .dash-table tbody tr:hover td {
+        background: transparent;
+    }
+
+    /* Row-header cell = card title bar. */
+    .dash-table tbody th[scope="row"] {
+        padding: 12px 16px;
+        background: var(--surface-2);
+        border-top: 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--navy);
+        font-size: 1rem;
+        white-space: normal;
+    }
+
+    .dash-table tbody th[scope="row"]::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 2px;
+        color: var(--muted);
+        font-size: 0.66rem;
+        font-weight: bold;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+    }
+
+    /* Body cells = label / value pairs. */
+    .dash-table tbody td {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        min-width: 0;
+        padding: 10px 16px;
+        border-top: 1px solid var(--line);
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: right;
+    }
+
+    .dash-table tbody td:first-of-type {
+        border-top: 0;
+    }
+
+    .dash-table tbody td::before {
+        content: attr(data-label);
+        flex: none;
+        max-width: 42%;
+        color: var(--muted);
+        font-size: 0.7rem;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        text-align: left;
+    }
+
+    /* The action cell becomes a full-width tap zone at the card foot. */
+    .dash-table tbody td[data-label="Action"],
+    .dash-table tbody td[data-label="Actions"] {
+        display: block;
+        padding: 12px 16px 14px;
+        background: var(--surface-2);
+        text-align: left;
+    }
+
+    .dash-table tbody td[data-label="Action"]::before,
+    .dash-table tbody td[data-label="Actions"]::before {
+        content: attr(data-label);
+        display: block;
+        max-width: none;
+        margin-bottom: 8px;
+    }
+
+    .dash-table tbody td[data-label="Action"] > a,
+    .dash-table tbody td[data-label="Actions"] .dash-row-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+    }
+
+    .dash-table tbody td[data-label="Action"] > a,
+    .dash-table tbody td[data-label="Actions"] .dash-row-actions > a,
+    .dash-table tbody td[data-label="Actions"] .dash-row-actions .link-button {
+        display: inline-flex;
+        flex: 1 1 auto;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 8px 14px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    .dash-table tbody td[data-label="Actions"] .dash-inline-form {
+        display: flex;
+        flex: 1 1 auto;
+    }
+
+    .dash-table tbody td[data-label="Actions"] .dash-inline-form .link-button {
+        width: 100%;
+    }
+
+    /* Filters, confirmation panels and record-form footers stack. */
+    .dash-filter {
+        padding: 14px;
+    }
+
+    .dash-filter .form-field {
+        flex: 1 1 100%;
+    }
+
+    .dash-filter > .button {
+        width: 100%;
+    }
+
+    .crud-form-foot .button {
+        width: 100%;
+    }
+
+    .crud-form-foot {
+        flex-direction: column;
+    }
+}
+
+/* =========================================================
+   Large-screen application layout (>= 1200px)
+
+   Progressive enhancement: keep the dashboard compact and dense
+   on a big monitor - trim banner height, action/stat padding and
+   the auth-page whitespace. No component is enlarged.
+   ========================================================= */
+@media (min-width: 1200px) {
+    /* One consistent, centred content width for the banner, the dashboard
+       body and the shared flash strip (the <section class="container">
+       header.php emits directly inside <main>, above the banner). */
+    .dash,
+    .page-banner .container,
+    #main-content > .container:not(.dash) {
+        width: min(1180px, calc(100% - 64px));
+    }
+
+    /* Banner: prominent Welcome heading, contained vertical height. */
+    .page-banner { padding: 42px 0; }
+
+    .page-banner h1 {
+        font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+    }
+
+    .dash { padding: 32px 0 48px; }
+
+    .dash-section { margin-bottom: 30px; }
+
+    .dash-stat-grid { gap: 18px; }
+
+    /* Slightly tighter cards - clickable, not oversized. */
+    .dash-action-card { padding: 14px 16px; }
+
+    .dash-stat { padding: 16px 18px; }
+
+    /* Denser table rows on a laptop. */
+    .dash-table th,
+    .dash-table td { padding: 12px 16px; }
+
+    .dash-table caption { padding: 12px 16px; }
+
+    /* Auth pages: a touch more room around the card on wide screens. */
+    .auth-shell {
+        padding: 32px 0 44px;
+    }
+}
+
+/* =========================================================
+   LAPTOP TIER - 1200 to 1399px CSS.
+   The dashboard a step more compact than the >= 1400px view:
+   shorter banner, smaller section headings, tighter cards.
+   ========================================================= */
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .page-banner { padding: 40px 0; }
+
+    .page-banner h1 { font-size: 2.3rem; }
+
+    .dash { padding: 26px 0 42px; }
+
+    .dash-section { margin-bottom: 28px; }
+
+    .dash-section > h2 { font-size: 1.4rem; }
+
+    .dash-action-card { padding: 12px 16px; }
+
+    .dash-stat { padding: 15px 16px; }
+
+    .dash-stat dd { font-size: 1.78rem; }
+
+    .auth-shell { padding: 28px 0 40px; }
+}
+
+/* Extra-large application screens: a wider shell so table-heavy
+   dashboards use the room (banner stays aligned), plus a slightly
+   larger auth card. No component is enlarged. */
+@media (min-width: 1400px) {
+    .page-banner .container,
+    .dash,
+    #main-content > .container:not(.dash) {
+        width: min(1400px, calc(100% - 96px));
+    }
+
+    .auth-card {
+        max-width: 900px;
+    }
+
+    .auth-card--wide {
+        max-width: 980px;
     }
 }

@@ -71,47 +71,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $page_title = 'Log in';
+
+/* Presentation only: take any one-time notice (the "Please log in to
+   continue." hint from require_login(), a session-timeout message, or
+   the post-registration success line) BEFORE the header renders it, so
+   it shows as a small notice inside the card rather than a full-width
+   banner above it. The messages are still set in auth.php / register.php. */
+$authNoticeOk   = flash_get('success');
+$authNoticeInfo = flash_get('info');
+$authNotice     = $authNoticeOk ?? $authNoticeInfo;
+$authNoticeKind = $authNoticeOk !== null ? 'success' : 'info';
+
 require __DIR__ . '/../includes/header.php';
 ?>
-<section class="page-banner">
-    <section class="container">
-        <p class="kicker">Account access</p>
-        <h1>Log in</h1>
-        <p>Enter your email and password to reach your dashboard.</p>
-    </section>
-</section>
+<section class="auth-shell">
+    <div class="container">
+        <div class="auth-card">
+            <aside class="auth-brand">
+                <span class="auth-brand-mark" aria-hidden="true">+</span>
+                <p class="auth-brand-name">Evergreen Community Hospital</p>
+                <p class="auth-brand-sub">Hospital Management System</p>
+                <p class="auth-brand-copy">Practical, respectful healthcare for Western Sydney families.</p>
+            </aside>
 
-<section class="content-section">
-    <section class="container">
-        <?php if ($errors): ?>
-            <div class="form-feedback error" role="alert" tabindex="-1" id="form-errors">
-                <?php foreach ($errors as $message): ?>
-                    <p><?= e($message) ?></p>
-                <?php endforeach; ?>
+            <div class="auth-main">
+                <?php if ($authNotice !== null): ?>
+                    <p class="auth-notice auth-notice--<?= $authNoticeKind ?>" role="status"><?= e($authNotice) ?></p>
+                <?php endif; ?>
+                <p class="kicker">Account access</p>
+                <h1>Log in</h1>
+                <p class="auth-lead">Enter your email and password to reach your dashboard.</p>
+
+                <?php if ($errors): ?>
+                    <div class="form-feedback error" role="alert" tabindex="-1" id="form-errors">
+                        <?php foreach ($errors as $message): ?>
+                            <p><?= e($message) ?></p>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <form action="<?= e(BASE_URL) ?>/auth/login.php" method="post" novalidate>
+                    <?= csrf_field() ?>
+                    <div class="form-grid">
+                        <div class="form-field full-width">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" name="email" required maxlength="150"
+                                   autocomplete="email" value="<?= e($email) ?>"
+                                   <?= $errors ? 'aria-invalid="true" aria-describedby="form-errors"' : '' ?>>
+                        </div>
+                        <div class="form-field full-width">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required maxlength="72"
+                                   autocomplete="current-password"
+                                   <?= $errors ? 'aria-invalid="true" aria-describedby="form-errors"' : '' ?>>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="button button-primary">Log in</button>
+                    </div>
+                    <p class="auth-alt">No account yet? <a href="<?= e(BASE_URL) ?>/auth/register.php">Register as a patient</a>.</p>
+                </form>
             </div>
-        <?php endif; ?>
-
-        <form action="<?= e(BASE_URL) ?>/auth/login.php" method="post" class="form-panel" novalidate>
-            <?= csrf_field() ?>
-            <div class="form-grid">
-                <div class="form-field full-width">
-                    <label for="email">Email address</label>
-                    <input type="email" id="email" name="email" required maxlength="150"
-                           autocomplete="email" value="<?= e($email) ?>"
-                           <?= $errors ? 'aria-invalid="true" aria-describedby="form-errors"' : '' ?>>
-                </div>
-                <div class="form-field full-width">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required maxlength="72"
-                           autocomplete="current-password"
-                           <?= $errors ? 'aria-invalid="true" aria-describedby="form-errors"' : '' ?>>
-                </div>
-            </div>
-
-            <button type="submit" class="button button-primary">Log in</button>
-            <p>No account yet? <a href="<?= e(BASE_URL) ?>/auth/register.php">Register as a patient</a>.</p>
-        </form>
-    </section>
+        </div>
+    </div>
 </section>
 
 <script>

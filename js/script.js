@@ -30,7 +30,7 @@ function setupMobileMenu() {
 }
 
 function setupContactForm() {
-    const form = document.querySelector("#appointment-form");
+    const form = document.querySelector("#enquiry-form");
     const feedback = document.querySelector("#form-feedback");
 
     if (!form || !feedback) return;
@@ -51,7 +51,7 @@ function setupContactForm() {
         }
 
         feedback.textContent =
-            "Thank you. Your request has been recorded for this website demonstration. No information has been sent or stored.";
+            "Thank you. Your message has been checked for this website demonstration. No information has been sent or stored.";
         feedback.classList.add("success");
         form.reset();
         feedback.focus();

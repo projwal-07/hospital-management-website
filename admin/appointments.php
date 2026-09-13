@@ -91,14 +91,16 @@ require __DIR__ . '/../includes/header.php';
                     <label for="notes">Notes (optional, up to 500 characters)</label>
                     <textarea id="notes" name="notes" maxlength="500"><?= e((string) ($editing['notes'] ?? '')) ?></textarea>
                 </div>
-                <button type="submit" class="button button-primary">Save changes</button>
-                <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/appointments.php">Cancel</a>
+                <div class="form-actions">
+                    <button type="submit" class="button button-primary">Save changes</button>
+                    <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/appointments.php">Cancel</a>
+                </div>
             </form>
         </section>
     <?php endif; ?>
 
     <section class="dash-section" aria-labelledby="list-heading">
-        <h2 id="list-heading">All appointments</h2>
+        <h2 id="list-heading"><?= svg_icon('list') ?>All appointments</h2>
 
         <form action="<?= e(BASE_URL) ?>/admin/appointments.php" method="get" class="dash-filter">
             <div class="form-field">
@@ -140,13 +142,13 @@ require __DIR__ . '/../includes/header.php';
                     <tbody>
                         <?php foreach ($appointments as $a): ?>
                             <tr>
-                                <th scope="row"><?= e(fmt_date($a['appointment_date'])) ?></th>
-                                <td><?= e(fmt_time($a['appointment_time'])) ?></td>
-                                <td><?= e($a['patient_name']) ?></td>
-                                <td><?= e($a['doctor_name']) ?></td>
-                                <td><?= e($a['department_name']) ?></td>
-                                <td><span class="<?= e(status_class($a['status'])) ?>"><?= e(status_label($a['status'])) ?></span></td>
-                                <td><a href="<?= e(BASE_URL) ?>/admin/appointments.php?action=edit&amp;id=<?= (int) $a['id'] ?>">Update</a></td>
+                                <th scope="row" data-label="Date"><?= e(fmt_date($a['appointment_date'])) ?></th>
+                                <td data-label="Time"><?= e(fmt_time($a['appointment_time'])) ?></td>
+                                <td data-label="Patient"><?= e($a['patient_name']) ?></td>
+                                <td data-label="Doctor"><?= e($a['doctor_name']) ?></td>
+                                <td data-label="Department"><?= e($a['department_name']) ?></td>
+                                <td data-label="Status"><span class="<?= e(status_class($a['status'])) ?>"><?= e(status_label($a['status'])) ?></span></td>
+                                <td data-label="Action"><a href="<?= e(BASE_URL) ?>/admin/appointments.php?action=edit&amp;id=<?= (int) $a['id'] ?>">Update</a></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -74,8 +74,10 @@ require __DIR__ . '/../includes/header.php';
                     <input type="hidden" name="action" value="toggle_active">
                     <input type="hidden" name="id" value="<?= (int) $confirmDelete['id'] ?>">
                     <input type="hidden" name="active" value="0">
-                    <button type="submit" class="button button-primary">Deactivate doctor</button>
-                    <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Back</a>
+                    <div class="form-actions">
+                        <button type="submit" class="button button-primary">Deactivate doctor</button>
+                        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Back</a>
+                    </div>
                 </form>
             <?php else: ?>
                 <p>This will permanently remove the doctor and their login account. This cannot be undone.</p>
@@ -83,15 +85,17 @@ require __DIR__ . '/../includes/header.php';
                     <?= csrf_field() ?>
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= (int) $confirmDelete['id'] ?>">
-                    <button type="submit" class="button button-danger">Delete doctor</button>
-                    <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Keep doctor</a>
+                    <div class="form-actions">
+                        <button type="submit" class="button button-danger">Delete doctor</button>
+                        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/doctors.php">Keep doctor</a>
+                    </div>
                 </form>
             <?php endif; ?>
         </section>
     <?php endif; ?>
 
     <section class="dash-section" aria-labelledby="list-heading">
-        <h2 id="list-heading">All doctors</h2>
+        <h2 id="list-heading"><?= svg_icon('stethoscope') ?>All doctors</h2>
         <?php if (!$doctors): ?>
             <p class="dash-empty">No doctors yet. <a href="<?= e(BASE_URL) ?>/admin/doctor-form.php">Add the first doctor</a>.</p>
         <?php else: ?>
@@ -112,28 +116,28 @@ require __DIR__ . '/../includes/header.php';
                     <tbody>
                         <?php foreach ($doctors as $d): ?>
                             <tr>
-                                <th scope="row"><?= e($d['full_name']) ?></th>
-                                <td><?= e($d['email']) ?></td>
-                                <td><?= e($d['department_name']) ?></td>
-                                <td><?= e($d['specialisation']) ?></td>
-                                <td>
+                                <th scope="row" data-label="Name"><?= e($d['full_name']) ?></th>
+                                <td data-label="Email"><?= e($d['email']) ?></td>
+                                <td data-label="Department"><?= e($d['department_name']) ?></td>
+                                <td data-label="Specialisation"><?= e($d['specialisation']) ?></td>
+                                <td data-label="Status">
                                     <span class="dash-status dash-status--<?= $d['is_active'] ? 'confirmed' : 'cancelled' ?>">
                                         <?= $d['is_active'] ? 'Active' : 'Inactive' ?>
                                     </span>
                                 </td>
-                                <td><?= (int) $d['appointment_count'] ?></td>
-                                <td>
-                                    <a href="<?= e(BASE_URL) ?>/admin/doctor-form.php?id=<?= (int) $d['id'] ?>">Edit</a>
-                                    &middot;
-                                    <form action="<?= e(BASE_URL) ?>/admin/doctors.php" method="post" class="dash-inline-form">
-                                        <?= csrf_field() ?>
-                                        <input type="hidden" name="action" value="toggle_active">
-                                        <input type="hidden" name="id" value="<?= (int) $d['id'] ?>">
-                                        <input type="hidden" name="active" value="<?= $d['is_active'] ? '0' : '1' ?>">
-                                        <button type="submit" class="link-button"><?= $d['is_active'] ? 'Deactivate' : 'Activate' ?></button>
-                                    </form>
-                                    &middot;
-                                    <a href="<?= e(BASE_URL) ?>/admin/doctors.php?action=delete&amp;id=<?= (int) $d['id'] ?>">Delete</a>
+                                <td data-label="Appointments"><?= (int) $d['appointment_count'] ?></td>
+                                <td data-label="Actions">
+                                    <span class="dash-row-actions">
+                                        <a href="<?= e(BASE_URL) ?>/admin/doctor-form.php?id=<?= (int) $d['id'] ?>">Edit</a>
+                                        <form action="<?= e(BASE_URL) ?>/admin/doctors.php" method="post" class="dash-inline-form">
+                                            <?= csrf_field() ?>
+                                            <input type="hidden" name="action" value="toggle_active">
+                                            <input type="hidden" name="id" value="<?= (int) $d['id'] ?>">
+                                            <input type="hidden" name="active" value="<?= $d['is_active'] ? '0' : '1' ?>">
+                                            <button type="submit" class="link-button"><?= $d['is_active'] ? 'Deactivate' : 'Activate' ?></button>
+                                        </form>
+                                        <a href="<?= e(BASE_URL) ?>/admin/doctors.php?action=delete&amp;id=<?= (int) $d['id'] ?>">Delete</a>
+                                    </span>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

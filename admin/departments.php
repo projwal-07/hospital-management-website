@@ -60,22 +60,26 @@ require __DIR__ . '/../includes/header.php';
                    <strong><?= (int) $confirmDelete['doctor_count'] ?></strong> doctor(s) and
                    <strong><?= (int) $confirmDelete['appointment_count'] ?></strong> appointment(s)
                    and cannot be deleted.</p>
-                <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Back</a>
+                <div class="form-actions">
+                    <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Back</a>
+                </div>
             <?php else: ?>
                 <p>This department has no doctors or appointments. Deleting it cannot be undone.</p>
                 <form action="<?= e(BASE_URL) ?>/admin/departments.php" method="post">
                     <?= csrf_field() ?>
                     <input type="hidden" name="action" value="delete">
                     <input type="hidden" name="id" value="<?= (int) $confirmDelete['id'] ?>">
-                    <button type="submit" class="button button-danger">Delete department</button>
-                    <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Keep department</a>
+                    <div class="form-actions">
+                        <button type="submit" class="button button-danger">Delete department</button>
+                        <a class="button button-light" href="<?= e(BASE_URL) ?>/admin/departments.php">Keep department</a>
+                    </div>
                 </form>
             <?php endif; ?>
         </section>
     <?php endif; ?>
 
     <section class="dash-section" aria-labelledby="list-heading">
-        <h2 id="list-heading">All departments</h2>
+        <h2 id="list-heading"><?= svg_icon('building') ?>All departments</h2>
         <?php if (!$departments): ?>
             <p class="dash-empty">No departments yet. <a href="<?= e(BASE_URL) ?>/admin/department-form.php">Add the first department</a>.</p>
         <?php else: ?>
@@ -94,14 +98,15 @@ require __DIR__ . '/../includes/header.php';
                     <tbody>
                         <?php foreach ($departments as $d): ?>
                             <tr>
-                                <th scope="row"><?= e($d['name']) ?></th>
-                                <td><?= e((string) ($d['description'] ?? '')) ?></td>
-                                <td><?= (int) $d['doctor_count'] ?></td>
-                                <td><?= (int) $d['appointment_count'] ?></td>
-                                <td>
-                                    <a href="<?= e(BASE_URL) ?>/admin/department-form.php?id=<?= (int) $d['id'] ?>">Edit</a>
-                                    &middot;
-                                    <a href="<?= e(BASE_URL) ?>/admin/departments.php?action=delete&amp;id=<?= (int) $d['id'] ?>">Delete</a>
+                                <th scope="row" data-label="Name"><?= e($d['name']) ?></th>
+                                <td data-label="Description"><?= e((string) ($d['description'] ?? '')) ?></td>
+                                <td data-label="Doctors"><?= (int) $d['doctor_count'] ?></td>
+                                <td data-label="Appointments"><?= (int) $d['appointment_count'] ?></td>
+                                <td data-label="Actions">
+                                    <span class="dash-row-actions">
+                                        <a href="<?= e(BASE_URL) ?>/admin/department-form.php?id=<?= (int) $d['id'] ?>">Edit</a>
+                                        <a href="<?= e(BASE_URL) ?>/admin/departments.php?action=delete&amp;id=<?= (int) $d['id'] ?>">Delete</a>
+                                    </span>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
